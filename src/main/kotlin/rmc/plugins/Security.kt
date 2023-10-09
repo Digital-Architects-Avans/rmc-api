@@ -1,30 +1,38 @@
 package rmc.plugins
 
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
+
+import com.typesafe.config.ConfigFactory
+import rmc.utils.TokenManager
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
+import io.ktor.server.config.*
+import io.ktor.server.response.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 fun Application.configureSecurity() {
-    // Please read the jwt property from the config file if you are using EngineMain
-    val jwtAudience = "jwt-audience"
-    val jwtDomain = "https://jwt-provider-domain/"
-    val jwtRealm = "ktor sample app"
-    val jwtSecret = "secret"
-    authentication {
+    val config = HoconApplicationConfig(ConfigFactory.load())
+    val tokenManager = TokenManager(config)
+
+    install(Authentication) {
         jwt {
-            realm = jwtRealm
-            verifier(
-                JWT
-                    .require(Algorithm.HMAC256(jwtSecret))
-                    .withAudience(jwtAudience)
-                    .withIssuer(jwtDomain)
-                    .build()
-            )
-            validate { credential ->
-                if (credential.payload.audience.contains(jwtAudience)) JWTPrincipal(credential.payload) else null
+
+            verifier(tokenManager.verifyJWTToken())
+            val realm = config.property("jwt.realm").getString()
+
+            validate { jwtCredential ->
+                if (jwtCredential.payload.getClaim("email").asString().isNotEmpty()) {
+                    JWTPrincipal(jwtCredential.payload)
+                } else null
             }
+
+            challenge { _, _ ->
+                call.respondText(Json.encodeToString(mapOf("Authorization" to "Bearer something.very.strange")), status = HttpStatusCode.Unauthorized)
+
+            }
+
         }
     }
 }
