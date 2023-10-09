@@ -6,11 +6,8 @@ import rmc.error.EntityNotFound
 import rmc.model.UserEntity
 import rmc.model.UsersTable
 import rmc.model.toUserDto
-import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import rmc.db.DatabaseFactory.dbQuery
-import rmc.dto.user.*
-import rmc.repository.user.UserRepository
 
 class UserRepositoryImpl : UserRepository {
     override suspend fun allUsers(): List<UserDTO> = dbQuery {
