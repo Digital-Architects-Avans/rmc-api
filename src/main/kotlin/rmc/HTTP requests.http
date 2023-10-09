@@ -1,0 +1,86 @@
+
+###
+// DELETE USER FROM JWT TOKEN (userType: all)
+DELETE http://localhost:8080/me
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+###
+// UPDATE USER FROM JWT TOKEN (userType: all)
+PUT http://localhost:28852/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6Mjg4NTIvIiwiZW1haWwiOiJzdGFmZjNAZW1haWwuY29tIiwidXNlclR5cGUiOiJzdGFmZiIsInVzZXJJZCI6MTAsImV4cCI6MTY5NjY3OTYzMn0.w2TiAuK9Zd9KIfpy_S0Tcya5IU--xnsBwidlos7TsYA
+
+{"email": "staff3@email.com",
+  "userType": "staff",
+  "password": "password123",
+  "name": "test",
+  "phone": "+79999999999",
+  "address": "address"}
+
+###
+// GET USER INFO FROM JWT TOKEN (userType: all)
+GET http://localhost:8080/me
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+###
+// DELETE USER (userType: staff)
+DELETE http://localhost:8080/user/8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+###
+// UPDATE USER (userType: staff)
+PUT http://localhost:8080/user/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+{"email": "staff@email.com",
+  "userType": "staff",
+  "password": "password123",
+  "name": "name",
+  "phone": "+79999999999",
+  "address": "address"
+}
+
+###
+// GET USER BY ID (userType: staff)
+GET http://localhost:8080/user/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+###
+// GET ALL USERS (userType: staff)
+GET http://localhost:8080/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxMCwiZXhwIjoxNjk2ODY0MTQ2fQ.mE5k6t_2hlZnXZ9kwMcDVkusvPae5hvSxzH4cpFedgc
+
+###
+// VALIDATE JWT TOKEN (userType: all)
+GET http://localhost:8080/validate
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+
+###
+// AUTHENTICATE USER (no auth)
+POST http://localhost:8080/signin
+Content-Type: application/json
+
+{
+  "email": "alex@email.com",
+  "password": "StrongPassword1!"
+}
+
+###
+// REGISTER USER (no auth)
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "email": "staff@email.com",
+  "userType": "staff",
+  "password": "StrongPassword1!"
+}
+
+###
