@@ -6,7 +6,6 @@ import io.ktor.server.netty.*
 import rmc.db.DatabaseFactory
 import rmc.error.configureStatusPages
 import rmc.plugins.*
-import javax.xml.crypto.Data
 
 fun main() {
     embeddedServer(Netty,
