@@ -18,7 +18,8 @@ object DatabaseFactory {
             SchemaUtils.create(UsersTable)
         }
     }
-
+    // Utility function which we use for all requests to the DB
+    // Starts each query in its own coroutine
     suspend fun <T> dbQuery(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
 }
