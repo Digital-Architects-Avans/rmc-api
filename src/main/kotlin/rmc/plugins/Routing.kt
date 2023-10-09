@@ -8,7 +8,6 @@ import rmc.route.user.validateTokenRoute
 fun Application.configureRouting() {
     routing {
         userRoutes()
-        validateTokenRoute()
     }
 }
 
