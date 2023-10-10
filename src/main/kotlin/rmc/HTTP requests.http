@@ -34,14 +34,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // UPDATE USER (userType: staff)
 PUT http://localhost:8080/user/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
 
-{"email": "staff@email.com",
+{"email": "alex@email.com",
   "userType": "staff",
   "password": "password123",
-  "name": "name",
+  "firstName": "firstName",
+  "lastName": "lastName",
   "phone": "+79999999999",
-  "address": "address"
+  "street": "address",
+  "buildingNumber": "1",
+  "zipCode": "4818CR",
+  "city": "Breda"
 }
 
 ###
@@ -54,7 +58,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // GET ALL USERS (userType: staff)
 GET http://localhost:8080/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxMCwiZXhwIjoxNjk2ODY0MTQ2fQ.mE5k6t_2hlZnXZ9kwMcDVkusvPae5hvSxzH4cpFedgc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
 
 ###
 // VALIDATE JWT TOKEN (userType: all)
@@ -78,7 +82,7 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "email": "staff@email.com",
+  "email": "alex@email.com",
   "userType": "staff",
   "password": "StrongPassword1!"
 }
