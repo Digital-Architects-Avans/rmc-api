@@ -12,18 +12,26 @@ class UserEntity(id: EntityID<Int>) : IntEntity(id) {
     var email by UsersTable.email
     var userType by UsersTable.userType
     var password by UsersTable.password
-    var name by UsersTable.name
+    var firstName by UsersTable.firstName
+    var lastName by UsersTable.lastName
     var phone by UsersTable.phone
-    var address by UsersTable.address
+    var street by UsersTable.street
+    var buildingNumber by UsersTable.buildingNumber
+    var zipCode by UsersTable.zipCode
+    var city by UsersTable.city
 }
 
 object UsersTable : IntIdTable() {
     val email = varchar("email", 100)
     val userType = varchar("userType", 100)
     val password = varchar("password", 100)
-    val name = varchar("name", 100).default("")
+    val firstName = varchar("firstName", 100).default("")
+    val lastName = varchar("lastName", 100).default("")
     val phone = varchar("phone", 100).default("")
-    val address = varchar("address", 100).default("")
+    val street = varchar("street", 100).default("")
+    val buildingNumber = varchar("buildingNumber", 100).default("")
+    val zipCode = varchar("zipCode", 100).default("")
+    val city = varchar("city", 100).default("")
 
     init {
         index(true, email)
@@ -34,7 +42,11 @@ fun UserEntity.toUserDto() = UserDTO(
     this.id.value,
     this.email,
     this.userType,
-    this.name,
+    this.firstName,
+    this.lastName,
     this.phone,
-    this.address
+    this.street,
+    this.buildingNumber,
+    this.zipCode,
+    this.city
 )
