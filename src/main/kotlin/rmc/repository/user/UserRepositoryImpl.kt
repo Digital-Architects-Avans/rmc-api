@@ -32,9 +32,13 @@ class UserRepositoryImpl : UserRepository {
         UserEntity.findById(id)?.let {
             it.password = user.hashedPassword()
             it.userType = user.userType
-            it.name = user.name
+            it.firstName = user.firstName
+            it.lastName = user.lastName
             it.phone = user.phone
-            it.address = user.address
+            it.street = user.street
+            it.buildingNumber = user.buildingNumber
+            it.zipCode = user.zipCode
+            it.city = user.city
         } ?: throw EntityNotFound("User")
     }
 
