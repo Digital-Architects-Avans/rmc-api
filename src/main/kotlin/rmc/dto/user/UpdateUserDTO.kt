@@ -8,9 +8,13 @@ data class UpdateUserDTO (
     val email: String,
     val userType: String,
     val password: String,
-    val name: String,
+    val firstName: String,
+    val lastName: String,
     val phone: String,
-    val address: String
+    val street: String,
+    val buildingNumber: String,
+    val zipCode: String,
+    val city: String
 ) {
     fun hashedPassword(): String {
         return BCrypt.hashpw(password, BCrypt.gensalt())
