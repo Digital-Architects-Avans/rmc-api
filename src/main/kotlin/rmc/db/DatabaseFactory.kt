@@ -15,7 +15,9 @@ object DatabaseFactory {
         transaction(database) {
             addLogger(StdOutSqlLogger)
 
-            SchemaUtils.create(UsersTable)
+            SchemaUtils.create(
+                UsersTable
+            )
         }
     }
     // Utility function which we use for all requests to the DB
