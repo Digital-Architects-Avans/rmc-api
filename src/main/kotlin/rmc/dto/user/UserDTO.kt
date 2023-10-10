@@ -9,7 +9,11 @@ data class UserDTO (
     val id: Int,
     val email: String,
     val userType: String,
-    val name: String,
+    val firstName: String,
+    val lastName: String,
     val phone: String,
-    val address: String
+    val street: String,
+    val buildingNumber: String,
+    val zipCode: String,
+    val city: String
 )
