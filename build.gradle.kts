@@ -43,7 +43,6 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-server-request-validation:$ktor_version")
     implementation("org.mindrot:jbcrypt:0.4")
-    implementation("io.ktor:ktor-server-request-validation:$ktor_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
