@@ -1,4 +1,4 @@
-package rmc.repository.user
+package rmc.dao.user
 
 import rmc.dto.user.*
 import rmc.error.AuthenticationFailed
