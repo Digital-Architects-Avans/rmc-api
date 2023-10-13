@@ -4,7 +4,6 @@ import kotlinx.coroutines.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import org.jetbrains.exposed.sql.transactions.experimental.*
-import rmc.model.UsersTable
 
 object DatabaseFactory {
     fun init() {
