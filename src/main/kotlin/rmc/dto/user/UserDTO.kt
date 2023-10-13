@@ -8,7 +8,7 @@ typealias UserId = Int
 data class UserDTO (
     val id: Int,
     val email: String,
-    val userType: String,
+    val userType: UserType,
     val firstName: String,
     val lastName: String,
     val phone: String,

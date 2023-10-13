@@ -18,7 +18,7 @@ class TokenManager(config: HoconApplicationConfig) {
             .withAudience(audience)
             .withIssuer(issuer)
             .withClaim("email", user.email)
-            .withClaim("userType", user.userType)
+            .withClaim("userType", user.userType.toString())
             .withClaim("userId", user.id)
             .withExpiresAt(Date(expirationDate))
             .sign(Algorithm.HMAC256(secret))

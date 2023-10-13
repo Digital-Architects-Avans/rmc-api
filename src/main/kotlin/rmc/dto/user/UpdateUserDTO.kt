@@ -6,7 +6,7 @@ import org.mindrot.jbcrypt.BCrypt
 @Serializable
 data class UpdateUserDTO (
     val email: String,
-    val userType: String,
+    val userType: UserType,
     val password: String,
     val firstName: String,
     val lastName: String,

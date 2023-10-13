@@ -5,10 +5,14 @@ import rmc.error.WrongPasswordFormat
 import kotlinx.serialization.Serializable
 import org.mindrot.jbcrypt.BCrypt
 
+enum class UserType {
+    STAFF, CLIENT, OTHER
+}
+
 @Serializable
 data class SignupDTO (
     val email: String,
-    val userType: String,
+    val userType: UserType,
     val password: String
 ) {
     fun hashedPassword(): String {

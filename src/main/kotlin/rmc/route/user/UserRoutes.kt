@@ -55,7 +55,7 @@ fun Route.userRoutes() {
             val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
             val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
-            if (userType != "staff") throw WrongUserType()
+            if (userType != "STAFF") throw WrongUserType()
             val users = userRepository.allUsers()
             call.respond(users)
         }
@@ -64,7 +64,7 @@ fun Route.userRoutes() {
             val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
             val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
-            if (userType != "staff") throw WrongUserType()
+            if (userType != "STAFF") throw WrongUserType()
             val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
             val found = userRepository.getUserById(id)
             found.let { call.respond(it) }
@@ -74,7 +74,7 @@ fun Route.userRoutes() {
             val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
             val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
-            if (userType != "staff") throw WrongUserType()
+            if (userType != "STAFF") throw WrongUserType()
             val userId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
             val updateUserDTO = call.receive<UpdateUserDTO>()
 
@@ -95,7 +95,7 @@ fun Route.userRoutes() {
             val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
             val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
-            if (userType != "staff") throw WrongUserType()
+            if (userType != "STAFF") throw WrongUserType()
             val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
             call.respond(userRepository.deleteUser(id))
         }
