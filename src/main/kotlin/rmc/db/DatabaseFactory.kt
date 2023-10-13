@@ -15,7 +15,9 @@ object DatabaseFactory {
             addLogger(StdOutSqlLogger)
 
             SchemaUtils.create(
-                UsersTable
+                UsersTable,
+                VehiclesTable,
+                RentalsTable
             )
         }
     }
