@@ -1,3 +1,36 @@
+// CREATE A RENTAL FOR {USER} {VEHICLE}
+POST http://localhost:8080/createRental/1/2
+Content-Type: application/json
+
+{
+  "date": "",
+  "price": 100.00,
+  "location": "Test",
+  "status": "MakeThisAnEnum",
+  "distanceTravelled": 0.00,
+  "score": 100
+}
+
+###
+
+
+###
+// CREATE A VEHICLE
+POST http://localhost:8080/createVehicle/1
+Content-Type: application/json
+
+{
+  "brand": "Tesla",
+  "model": "Model S",
+  "year": 2021,
+  "vehicleClass": "Test",
+  "engineType": "Electric",
+  "licensePlate": "CC-AA-33",
+  "imgLink": "https://www.google.com",
+  "vehicleLocation": "Test",
+  "price": 250.00,
+  "availability": "Test"
+}
 
 ###
 // DELETE USER FROM JWT TOKEN (userType: all)
@@ -25,13 +58,13 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
 
 ###
-// DELETE USER (userType: staff)
+// DELETE USER (userType: STAFF)
 DELETE http://localhost:8080/user/1
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4MkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjozLCJleHAiOjE2OTcyMDUyNjZ9.MvI3hdIt3evMiHsyXh7uympxUuN-Jj14gl-4O4qpgBM
 
 ###
-// UPDATE USER (userType: staff)
+// UPDATE USER (userType: STAFF)
 PUT http://localhost:8080/user/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
@@ -49,16 +82,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// GET USER BY ID (userType: staff)
+// GET USER BY ID (userType: STAFF)
 GET http://localhost:8080/user/1
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
 
 ###
-// GET ALL USERS (userType: staff)
+// GET ALL USERS (userType: STAFF)
 GET http://localhost:8080/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzIwNjI0MH0.mpU2nm20SWHjqvtlsoJd5Tiq-iGhFOgDD3GnNXXAOJE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzIxNjUwMX0.XU9mEInBFRaB40g0uk6wuf6mku_UY0RGaPHJu15Km5k
 
 ###
 // AUTHENTICATE USER (no auth)
@@ -76,7 +109,7 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "email": "client@email.com",
+  "email": "client2@email.com",
   "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
