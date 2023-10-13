@@ -6,6 +6,10 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.UsersTable
 
+enum class UserType {
+    STAFF, CLIENT, OTHER
+}
+
 class UserEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<UserEntity>(UsersTable)
 
