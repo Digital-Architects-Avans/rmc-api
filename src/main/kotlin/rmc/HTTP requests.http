@@ -26,9 +26,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // DELETE USER (userType: staff)
-DELETE http://localhost:8080/user/8
+DELETE http://localhost:8080/user/1
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4MkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjozLCJleHAiOjE2OTcyMDUyNjZ9.MvI3hdIt3evMiHsyXh7uympxUuN-Jj14gl-4O4qpgBM
 
 ###
 // UPDATE USER (userType: staff)
@@ -58,13 +58,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // GET ALL USERS (userType: staff)
 GET http://localhost:8080/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
-
-###
-// VALIDATE JWT TOKEN (userType: all)
-GET http://localhost:8080/validate
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzIwNjI0MH0.mpU2nm20SWHjqvtlsoJd5Tiq-iGhFOgDD3GnNXXAOJE
 
 ###
 // AUTHENTICATE USER (no auth)
@@ -82,8 +76,8 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "email": "alex@email.com",
-  "userType": "staff",
+  "email": "client@email.com",
+  "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
 
