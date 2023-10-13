@@ -84,7 +84,7 @@ fun Route.userRoutes() {
                 userRepository.updateUser(userId, updateUserDTO)
                 val updatedUser = userRepository.getUserById(userId)
                 call.respond(updatedUser)
-            } catch (e: EntityNotFound) {
+            } catch (e: EntityWithIdNotFound) {
                 val signUpDto = SignupDTO(updateUserDTO.email, updateUserDTO.userType, updateUserDTO.password)
                 val newUser = userRepository.createUser(signUpDto)
                 call.respond(newUser)
@@ -118,7 +118,7 @@ fun Route.userRoutes() {
                 userRepository.updateUser(userId, updateUserDTO)
                 val updatedUser = userRepository.getUserById(userId)
                 call.respond(updatedUser)
-            } catch (e: EntityNotFound) {
+            } catch (e: EntityWithIdNotFound) {
                 val signUpDto = SignupDTO(updateUserDTO.email, updateUserDTO.userType, updateUserDTO.password)
                 val newUser = userRepository.createUser(signUpDto)
                 call.respond(newUser)
