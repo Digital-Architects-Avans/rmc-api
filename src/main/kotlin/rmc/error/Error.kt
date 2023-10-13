@@ -8,11 +8,12 @@ import io.ktor.server.response.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 
-open class EntityNotFound(entity: String) : Exception("""{"status":"$entity not found"}""")
+open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"status":"$entity with $id not found"}""")
 class InvalidEmailError : Exception("""{"status":"Invalid email"}""")
 class InvalidPasswordError : Exception("""{"status":"Invalid password"}""")
 class AuthenticationFailed : Exception("""{"status":"Authentication Failed"}""")
 class EmailAlreadyRegistered : Exception("""{"status":"Email already registered"}""")
+class VehicleAlreadyRegistered : Exception("""{"status":"Vehicle already registered"}""")
 class EmailUpdateAttemptError : Exception("""{"status":"Email update not allowed"}""")
 class WrongIdFormatException : Exception("""{"status":"Wrong ID format"}""")
 class WrongIdRangeException : Exception("""{"status":"Wrong ID range"}""")
@@ -40,6 +41,9 @@ fun Application.configureStatusPages() {
         exception<EmailAlreadyRegistered> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
+        exception<VehicleAlreadyRegistered> { call, cause ->
+            call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
+        }
         exception<EmailUpdateAttemptError> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
@@ -58,7 +62,7 @@ fun Application.configureStatusPages() {
         exception<WrongUserType> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
-        exception<EntityNotFound> { call, cause ->
+        exception<EntityWithIdNotFound> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.BadRequest)
         }
         exception<MissingFieldException> { call, cause ->
