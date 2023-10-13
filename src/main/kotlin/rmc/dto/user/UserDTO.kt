@@ -1,6 +1,7 @@
 package rmc.dto.user
 
 import kotlinx.serialization.Serializable
+import rmc.model.UserType
 
 typealias UserId = Int
 
