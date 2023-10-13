@@ -2,7 +2,7 @@ package rmc.dao.user
 
 import rmc.dto.user.*
 import rmc.error.AuthenticationFailed
-import rmc.error.EntityNotFound
+import rmc.error.EntityWithIdNotFound
 import rmc.model.UserEntity
 import rmc.db.UsersTable
 import rmc.model.toUserDto
@@ -16,8 +16,8 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
-    override suspend fun getUserById(id: UserId): UserDTO = dbQuery {
-        UserEntity.findById(id)?.toUserDto() ?: throw EntityNotFound("User")
+    override suspend fun getUserById(userId: UserId): UserDTO = dbQuery {
+        UserEntity.findById(userId)?.toUserDto() ?: throw EntityWithIdNotFound("User", userId)
     }
 
     override suspend fun createUser(user: SignupDTO): UserDTO = dbQuery {
@@ -28,8 +28,8 @@ class UserRepositoryImpl : UserRepository {
         }.toUserDto()
     }
 
-    override suspend fun updateUser(id: UserId, user: UpdateUserDTO) = dbQuery {
-        UserEntity.findById(id)?.let {
+    override suspend fun updateUser(userId: UserId, user: UpdateUserDTO) = dbQuery {
+        UserEntity.findById(userId)?.let {
             it.password = user.hashedPassword()
             it.userType = user.userType
             it.firstName = user.firstName
@@ -39,11 +39,11 @@ class UserRepositoryImpl : UserRepository {
             it.buildingNumber = user.buildingNumber
             it.zipCode = user.zipCode
             it.city = user.city
-        } ?: throw EntityNotFound("User")
+        } ?: throw EntityWithIdNotFound("User", userId)
     }
 
-    override suspend fun deleteUser(id: UserId) = dbQuery {
-        UserEntity.findById(id)?.delete() ?: throw EntityNotFound("User")
+    override suspend fun deleteUser(userId: UserId) = dbQuery {
+        UserEntity.findById(userId)?.delete() ?: throw EntityWithIdNotFound("User", userId)
     }
 
     override suspend fun authenticateUser(user: SigninDTO): UserDTO {
