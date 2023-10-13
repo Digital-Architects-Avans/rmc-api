@@ -2,6 +2,7 @@ package rmc.dto.user
 
 import kotlinx.serialization.Serializable
 import org.mindrot.jbcrypt.BCrypt
+import rmc.model.UserType
 
 @Serializable
 data class UpdateUserDTO (
