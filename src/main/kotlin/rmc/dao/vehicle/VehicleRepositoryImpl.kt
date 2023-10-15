@@ -9,9 +9,9 @@ import rmc.dto.vehicle.CreateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO
 import rmc.error.EntityWithIdNotFound
 import rmc.error.VehicleAlreadyRegistered
-import rmc.model.UserEntity
-import rmc.model.VehicleEntity
-import rmc.model.toVehicleDTO
+import rmc.db.entity.UserEntity
+import rmc.db.entity.VehicleEntity
+import rmc.db.entity.toVehicleDTO
 
 class VehicleRepositoryImpl : VehicleRepository {
     override suspend fun createVehicle(userID: UserId, vehicle: CreateVehicleDTO): VehicleDTO = dbQuery {
