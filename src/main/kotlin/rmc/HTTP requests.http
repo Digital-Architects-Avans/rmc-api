@@ -1,6 +1,7 @@
-// CREATE A RENTAL FOR {USER} {VEHICLE}
-POST http://localhost:8080/createRental/1/2
+// CREATE A RENTAL WITH {VEHICLEID} (userType: STAFF)
+POST http://localhost:8080/createRental/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
 
 {
   "date": "",
@@ -12,20 +13,18 @@ Content-Type: application/json
 }
 
 ###
-
-
-###
-// CREATE A VEHICLE
-POST http://localhost:8080/createVehicle/1
+// CREATE A VEHICLE (userType: STAFF)
+POST http://localhost:8080/createVehicle
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
 
 {
-  "brand": "Tesla",
-  "model": "Model S",
+  "brand": "Ford",
+  "model": "Focus",
   "year": 2021,
   "vehicleClass": "Test",
-  "engineType": "Electric",
-  "licensePlate": "CC-AA-33",
+  "engineType": "Diesel",
+  "licensePlate": "CC-AA-00",
   "imgLink": "https://www.google.com",
   "vehicleLocation": "Test",
   "price": 250.00,
@@ -91,7 +90,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // GET ALL USERS (userType: STAFF)
 GET http://localhost:8080/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzIxNjUwMX0.XU9mEInBFRaB40g0uk6wuf6mku_UY0RGaPHJu15Km5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzM4NTA4Nn0.PoaRwSEmV6u8bccA-bDoTYbjs2u5x9D8Wql113h6CgE
 
 ###
 // AUTHENTICATE USER (no auth)
@@ -99,7 +98,7 @@ POST http://localhost:8080/signin
 Content-Type: application/json
 
 {
-  "email": "alex@email.com",
+  "email": "client@email.com",
   "password": "StrongPassword1!"
 }
 
@@ -109,7 +108,7 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "email": "client2@email.com",
+  "email": "client3@email.com",
   "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
