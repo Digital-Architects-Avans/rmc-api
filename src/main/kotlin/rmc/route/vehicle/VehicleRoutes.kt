@@ -13,7 +13,7 @@ import rmc.dto.vehicle.CreateVehicleDTO
 fun Route.vehicleRoutes() {
     val vehicleRepository = VehicleRepositoryImpl()
 
-    authenticate {
+//    authenticate {
         post("createVehicle") {
             val createVehicleDTO = call.receive<CreateVehicleDTO>()
             val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
@@ -22,5 +22,5 @@ fun Route.vehicleRoutes() {
             val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
             call.respond(vehicle)
         }
-    }
+//    }
 }
