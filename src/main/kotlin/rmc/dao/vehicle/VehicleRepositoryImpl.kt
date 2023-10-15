@@ -12,6 +12,8 @@ import rmc.error.VehicleAlreadyRegistered
 import rmc.db.entity.UserEntity
 import rmc.db.entity.VehicleEntity
 import rmc.db.entity.toVehicleDTO
+import rmc.dto.vehicle.UpdateVehicleDTO
+import rmc.dto.vehicle.VehicleId
 
 class VehicleRepositoryImpl : VehicleRepository {
     override suspend fun createVehicle(userID: UserId, vehicle: CreateVehicleDTO): VehicleDTO = dbQuery {
@@ -32,5 +34,25 @@ class VehicleRepositoryImpl : VehicleRepository {
             price = vehicle.price
             availability = vehicle.availability
         }.toVehicleDTO()
+    }
+
+    override suspend fun getVehicleByID( vehicleId: VehicleId ){
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getAllVehicles(): List<VehicleDTO> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getVehicleByUserId(userID: UserId): List<VehicleDTO> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteVehicle(vehicleId: VehicleId) {
+        TODO("Not yet implemented")
     }
 }
