@@ -8,6 +8,9 @@ import kotlinx.coroutines.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import org.jetbrains.exposed.sql.transactions.experimental.*
+import rmc.db.tables.RentalsTable
+import rmc.db.tables.UsersTable
+import rmc.db.tables.VehiclesTable
 
 object DatabaseFactory {
     fun init(config: ApplicationConfig) {

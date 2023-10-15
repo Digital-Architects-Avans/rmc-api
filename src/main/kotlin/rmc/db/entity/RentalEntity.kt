@@ -3,7 +3,7 @@ package rmc.db.entity
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import rmc.db.RentalsTable
+import rmc.db.tables.RentalsTable
 import rmc.dto.rental.RentalDTO
 
 enum class RentalStatus(val status: String) {

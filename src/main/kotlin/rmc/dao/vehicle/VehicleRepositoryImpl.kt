@@ -2,8 +2,8 @@ package rmc.dao.vehicle
 
 import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.DatabaseFactory.dbQuery
-import rmc.db.UsersTable
-import rmc.db.VehiclesTable
+import rmc.db.tables.UsersTable
+import rmc.db.tables.VehiclesTable
 import rmc.dto.user.UserId
 import rmc.dto.vehicle.CreateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO

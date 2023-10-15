@@ -1,4 +1,4 @@
-package rmc.db
+package rmc.db.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
 import rmc.db.entity.RentalStatus

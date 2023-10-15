@@ -4,7 +4,7 @@ import rmc.dto.user.UserDTO
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import rmc.db.UsersTable
+import rmc.db.tables.UsersTable
 
 enum class UserType {
     STAFF, CLIENT, OTHER

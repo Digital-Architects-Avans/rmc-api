@@ -4,7 +4,7 @@ import rmc.dto.user.*
 import rmc.error.AuthenticationFailed
 import rmc.error.EntityWithIdNotFound
 import rmc.db.entity.UserEntity
-import rmc.db.UsersTable
+import rmc.db.tables.UsersTable
 import rmc.db.entity.toUserDto
 import org.mindrot.jbcrypt.BCrypt
 import rmc.db.DatabaseFactory.dbQuery

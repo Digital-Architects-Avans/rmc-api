@@ -3,7 +3,7 @@ package rmc.db.entity
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
-import rmc.db.VehiclesTable
+import rmc.db.tables.VehiclesTable
 import rmc.dto.vehicle.VehicleDTO
 
 class VehicleEntity(id: EntityID<Int>) : IntEntity(id) {
