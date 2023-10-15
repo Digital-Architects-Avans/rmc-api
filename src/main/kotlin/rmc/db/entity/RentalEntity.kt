@@ -1,4 +1,4 @@
-package rmc.model
+package rmc.db.entity
 
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
