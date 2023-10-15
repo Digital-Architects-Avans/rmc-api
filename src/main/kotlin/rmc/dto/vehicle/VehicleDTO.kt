@@ -3,6 +3,7 @@ package rmc.dto.vehicle
 import kotlinx.serialization.Serializable
 
 typealias VehicleId = Int
+
 @Serializable
 data class VehicleDTO (
     val id: Int,
