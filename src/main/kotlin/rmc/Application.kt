@@ -1,21 +1,14 @@
 package rmc
 
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import rmc.db.DatabaseFactory
 import rmc.error.configureStatusPages
 import rmc.plugins.*
 
-fun main() {
-    embeddedServer(Netty,
-        port = 8080,
-        host = "0.0.0.0",
-        module = Application::module)
-        .start(wait = true)
-}
+fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun Application.module() {
+fun Application.module(testing: Boolean = false) {
     configureSecurity()
     configureSerialization()
     configureRouting()
