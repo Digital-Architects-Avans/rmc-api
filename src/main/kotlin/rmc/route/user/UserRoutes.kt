@@ -5,7 +5,7 @@ import rmc.dto.user.SigninDTO
 import rmc.dto.user.SignupDTO
 import rmc.dto.user.UpdateUserDTO
 import rmc.error.*
-import rmc.dao.user.UserRepositoryImpl
+import rmc.repository.user.UserRepositoryImpl
 import rmc.utils.TokenManager
 import io.ktor.http.*
 import io.ktor.server.application.*

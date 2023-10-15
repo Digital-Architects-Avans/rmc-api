@@ -7,7 +7,7 @@ import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import rmc.dao.rental.RentalRepositoryImpl
+import rmc.repository.rental.RentalRepositoryImpl
 import rmc.dto.rental.CreateRentalDTO
 
 fun Route.rentalRoutes() {

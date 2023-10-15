@@ -1,4 +1,4 @@
-package rmc.dao.rental
+package rmc.repository.rental
 
 import rmc.dto.rental.CreateRentalDTO
 import rmc.dto.rental.RentalDTO

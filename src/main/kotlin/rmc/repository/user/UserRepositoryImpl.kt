@@ -1,11 +1,11 @@
-package rmc.dao.user
+package rmc.repository.user
 
 import rmc.dto.user.*
 import rmc.error.AuthenticationFailed
 import rmc.error.EntityWithIdNotFound
-import rmc.db.entity.UserEntity
+import rmc.db.dao.UserEntity
 import rmc.db.tables.UsersTable
-import rmc.db.entity.toUserDto
+import rmc.db.dao.toUserDto
 import org.mindrot.jbcrypt.BCrypt
 import rmc.db.DatabaseFactory.dbQuery
 

@@ -1,4 +1,4 @@
-package rmc.dao.vehicle
+package rmc.repository.vehicle
 
 import rmc.dto.vehicle.CreateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO

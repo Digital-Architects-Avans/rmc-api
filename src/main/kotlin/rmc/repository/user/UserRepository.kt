@@ -1,4 +1,4 @@
-package rmc.dao.user
+package rmc.repository.user
 
 import rmc.dto.user.*
 

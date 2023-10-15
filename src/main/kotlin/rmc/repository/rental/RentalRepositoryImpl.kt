@@ -1,10 +1,10 @@
-package rmc.dao.rental
+package rmc.repository.rental
 
 import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.DatabaseFactory.dbQuery
 import rmc.db.tables.UsersTable
 import rmc.db.tables.VehiclesTable
-import rmc.db.entity.*
+import rmc.db.dao.*
 import rmc.dto.rental.CreateRentalDTO
 import rmc.dto.rental.RentalDTO
 import rmc.dto.user.UserId

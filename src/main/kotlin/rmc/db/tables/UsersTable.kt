@@ -1,7 +1,7 @@
 package rmc.db.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
-import rmc.db.entity.UserType
+import rmc.db.dao.UserType
 
 object UsersTable : IntIdTable() {
     val email = varchar("email", 100)

@@ -1,4 +1,4 @@
-package rmc.dao.vehicle
+package rmc.repository.vehicle
 
 import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.DatabaseFactory.dbQuery
@@ -9,9 +9,9 @@ import rmc.dto.vehicle.CreateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO
 import rmc.error.EntityWithIdNotFound
 import rmc.error.VehicleAlreadyRegistered
-import rmc.db.entity.UserEntity
-import rmc.db.entity.VehicleEntity
-import rmc.db.entity.toVehicleDTO
+import rmc.db.dao.UserEntity
+import rmc.db.dao.VehicleEntity
+import rmc.db.dao.toVehicleDTO
 
 class VehicleRepositoryImpl : VehicleRepository {
     override suspend fun createVehicle(userID: UserId, vehicle: CreateVehicleDTO): VehicleDTO = dbQuery {
