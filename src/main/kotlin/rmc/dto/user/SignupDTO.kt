@@ -4,8 +4,7 @@ import rmc.error.WrongEmailFormat
 import rmc.error.WrongPasswordFormat
 import kotlinx.serialization.Serializable
 import org.mindrot.jbcrypt.BCrypt
-import rmc.model.UserType
-
+import rmc.db.entity.UserType
 
 @Serializable
 data class SignupDTO (
