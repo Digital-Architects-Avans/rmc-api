@@ -23,6 +23,7 @@ fun Route.vehicleRoutes() {
                 val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
                 call.respond(vehicle)
             }
+
         }
     }
 }
