@@ -1,6 +1,7 @@
 package rmc.dto.vehicle
 
 import kotlinx.serialization.Serializable
+
 @Serializable
 data class CreateVehicleDTO (
     val brand: String,
