@@ -1,7 +1,7 @@
 package rmc.db
 
 import org.jetbrains.exposed.dao.id.IntIdTable
-import rmc.model.RentalStatus
+import rmc.db.entity.RentalStatus
 
 object RentalsTable : IntIdTable() {
     val vehicleId = reference("vehicleId", VehiclesTable.id)
