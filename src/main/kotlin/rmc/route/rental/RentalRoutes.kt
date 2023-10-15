@@ -14,15 +14,17 @@ fun Route.rentalRoutes() {
     val rentalRepository = RentalRepositoryImpl()
 
     authenticate {
-        post("createRental/{vehicleId}") {
-            val createRentalDTO = call.receive<CreateRentalDTO>()
-            val vehicleId = call.parameters["vehicleId"]?.toInt() ?: throw WrongIdFormatException()
+        route("/rental") {
+            post("/createRental/{vehicleId}") {
+                val createRentalDTO = call.receive<CreateRentalDTO>()
+                val vehicleId = call.parameters["vehicleId"]?.toInt() ?: throw WrongIdFormatException()
 
-            val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-            val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
 
-            val vehicle = rentalRepository.createRental(userId, vehicleId, createRentalDTO)
-            call.respond(vehicle)
+                val vehicle = rentalRepository.createRental(userId, vehicleId, createRentalDTO)
+                call.respond(vehicle)
+            }
         }
     }
 }

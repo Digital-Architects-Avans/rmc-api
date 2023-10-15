@@ -14,13 +14,15 @@ fun Route.vehicleRoutes() {
     val vehicleRepository = VehicleRepositoryImpl()
 
     authenticate {
-        post("createVehicle") {
-            val createVehicleDTO = call.receive<CreateVehicleDTO>()
-            val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-            val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
+        route("/vehicle") {
+            post("/createVehicle") {
+                val createVehicleDTO = call.receive<CreateVehicleDTO>()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
 
-            val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
-            call.respond(vehicle)
+                val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
+                call.respond(vehicle)
+            }
         }
     }
 }
