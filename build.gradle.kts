@@ -1,11 +1,11 @@
-val ktor_version: String by project
-val kotlin_version: String by project
-val logback_version: String by project
+val ktorVersion: String by project
+val kotlinVersion: String by project
+val logbackVersion: String by project
 
-val exposed_version: String by project
-val h2_version: String by project
+val exposedVersion: String by project
+val h2Version: String by project
 
-val hikaricp_version: String by project
+val hikaricpVersion: String by project
 
 plugins {
     kotlin("jvm") version "1.9.10"
@@ -35,19 +35,21 @@ dependencies {
     implementation("io.ktor:ktor-server-auth-jwt-jvm:2.2.4")
     implementation("io.ktor:ktor-server-host-common-jvm:2.2.4")
     implementation("io.ktor:ktor-server-status-pages-jvm:2.2.4")
-    implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
-    implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("com.h2database:h2:2.2.224")
     implementation("org.jetbrains.exposed:exposed-core:0.41.1")
     implementation("org.jetbrains.exposed:exposed-dao:0.41.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.41.1")
+    implementation("org.jetbrains.exposed:exposed-json:$exposedVersion")
     implementation("io.ktor:ktor-server-netty-jvm:2.2.4")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("io.ktor:ktor-server-request-validation:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("io.ktor:ktor-server-request-validation:$ktorVersion")
     implementation("org.mindrot:jbcrypt:0.4")
     testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-    implementation("com.zaxxer:HikariCP:$hikaricp_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    implementation("com.zaxxer:HikariCP:$hikaricpVersion")
+
 
 
 
