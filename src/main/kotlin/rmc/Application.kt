@@ -14,7 +14,7 @@ fun Application.module(testing: Boolean = false) {
     configureRouting()
     configureStatusPages()
     configureValidation()
-    DatabaseFactory.init()
+    DatabaseFactory.init(environment.config)
 }
 
 //    TODO("SLIDES LES 7, JSON ATTRIBUTE FOR LOCATION IN RENTAL AND VEHICLES TABLE (LAT/LONG) ")
