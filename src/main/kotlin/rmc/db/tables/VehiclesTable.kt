@@ -8,6 +8,7 @@ object VehiclesTable : IntIdTable() {
     val model = varchar("model", 100)
     val year = integer("year").default(0)
     val vehicleClass = varchar("vehicleClass", 100).default("")
+    // TODO("engineType should be enumerationByName for different engineTypes (ICE, CEV, FBEV)")
     val engineType = varchar("engineType", 100).default("")
     val licensePlate = varchar("licensePlate", 100).default("")
     val imgLink = varchar("imgLink", 100).default("")
