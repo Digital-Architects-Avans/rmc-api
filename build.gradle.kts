@@ -5,6 +5,8 @@ val logback_version: String by project
 val exposed_version: String by project
 val h2_version: String by project
 
+val hikaricp_version: String by project
+
 plugins {
     kotlin("jvm") version "1.9.10"
     id("io.ktor.plugin") version "2.3.5"
@@ -45,6 +47,7 @@ dependencies {
     implementation("org.mindrot:jbcrypt:0.4")
     testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    implementation("com.zaxxer:HikariCP:$hikaricp_version")
 
 
 
