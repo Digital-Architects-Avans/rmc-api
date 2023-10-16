@@ -1,7 +1,7 @@
 
 ###
 // CREATE A VEHICLE (userType: STAFF)
-POST http://localhost:8080/createVehicle
+POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
 
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 ###
 // CREATE A VEHICLE without auth
 
-POST http://0.0.0.0:8080/createVehicle
+POST http://0.0.0.0:8080/vehicle/createVehicle
 Accept: application/json
 Content-Type: application/json
 
