@@ -33,7 +33,7 @@ fun Route.userRoutes() {
                     val token = tokenManager.generateJWTToken(newUser)
 
                     call.response.header("Authorization", token)
-                    call.respondText(Json.encodeToString(mapOf("token" to token)), status = HttpStatusCode.OK)
+                    call.respondText(Json.encodeToString(mapOf("token" to token)), status = HttpStatusCode.Created)
                 } catch (e: Exception) {
                     throw EmailAlreadyRegistered()
                 }
