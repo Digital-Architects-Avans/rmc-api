@@ -8,7 +8,7 @@ import io.ktor.server.response.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 
-open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"status":"$entity with $id not found"}""")
+open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"status":"$entity with id $id not found"}""")
 class InvalidEmailError : Exception("""{"status":"Invalid email"}""")
 class InvalidPasswordError : Exception("""{"status":"Invalid password"}""")
 class AuthenticationFailed : Exception("""{"status":"Authentication Failed"}""")
