@@ -38,7 +38,7 @@ class VehicleRepositoryImpl : VehicleRepository {
         }.toVehicleDTO()
     }
 
-    override suspend fun getVehicleById( vehicleId: VehicleId ): VehicleDTO = dbQuery{
+    override suspend fun getVehicleById(vehicleId: VehicleId): VehicleDTO = dbQuery{
         VehicleEntity.findById(vehicleId)?.toVehicleDTO() ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
     }
 
