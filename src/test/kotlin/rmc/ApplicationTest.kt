@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import rmc.db.dao.UserType
 import rmc.dto.user.SignupDTO
+import rmc.dto.vehicle.CreateVehicleDTO
 import kotlin.test.*
 
 
@@ -44,12 +45,23 @@ class ApplicationTest {
 
     @Test
     fun testPostVehicleCreatevehicle() = testApplication {
-        application {
-            module()
+        val vehicle = CreateVehicleDTO()
+
+        val client = createClient {
+            install(ContentNegotiation) {
+                json()
+            }
         }
-        client.post("/vehicle/createVehicle").apply {
-            TODO("Please write your test here")
+
+        val response = client.post("/vehicle/createVehicle") {
+            contentType(ContentType.Application.Json)
+            setBody(vehicle)
+            header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         }
+
+        assert(principal.token.matches(jwtRegex))
+        assertEquals("""{"token":"${principal.token}"}""", response.bodyAsText())
+        assertEquals(HttpStatusCode.Created, response.status)
     }
 
     @Test
