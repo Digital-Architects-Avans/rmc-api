@@ -71,5 +71,9 @@ fun Application.configureStatusPages() {
         exception<MissingPermissionError> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
+        status(HttpStatusCode.TooManyRequests) { call, status ->
+            val retryAfter = call.response.headers["Retry-After"]
+            call.respondText(text = "429: Too many requests. Wait for $retryAfter seconds.", status = status)
+        }
     }
 }
