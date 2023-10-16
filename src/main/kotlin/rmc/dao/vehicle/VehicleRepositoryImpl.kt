@@ -1,6 +1,7 @@
 package rmc.dao.vehicle
 
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import rmc.db.DatabaseFactory.dbQuery
 import rmc.db.tables.UsersTable
 import rmc.db.tables.VehiclesTable
@@ -11,6 +12,7 @@ import rmc.error.EntityWithIdNotFound
 import rmc.error.VehicleAlreadyRegistered
 import rmc.db.entity.UserEntity
 import rmc.db.entity.VehicleEntity
+import rmc.db.entity.toUserDto
 import rmc.db.entity.toVehicleDTO
 import rmc.dto.vehicle.UpdateVehicleDTO
 import rmc.dto.vehicle.VehicleId
@@ -36,16 +38,34 @@ class VehicleRepositoryImpl : VehicleRepository {
         }.toVehicleDTO()
     }
 
-    override suspend fun getVehicleByID( vehicleId: VehicleId ){
-        TODO("Not yet implemented")
+    override suspend fun getVehicleById( vehicleId: VehicleId ): VehicleDTO = dbQuery{
+        VehicleEntity.findById(vehicleId)?.toVehicleDTO() ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
     }
 
-    override suspend fun getAllVehicles(): List<VehicleDTO> {
-        TODO("Not yet implemented")
+    override suspend fun getAllVehicles(): List<VehicleDTO> = dbQuery{
+        VehicleEntity.all().map {
+            it.toVehicleDTO()
+        }
     }
 
-    override suspend fun getVehicleByUserId(userID: UserId): List<VehicleDTO> {
-        TODO("Not yet implemented")
+//    override suspend fun getVehiclesByUserId(userId: VehicleId ): List<VehicleDTO> {
+//        val vehicleEntity = dbQuery {
+//            VehicleEntity.find(VehiclesTable.userId eq userId).firstOrNull()
+//                ?: throw EntityWithIdNotFound("Vehicles with User ", userId)
+//        }
+//        return vehicleEntity.toVehicleDTO()
+//    }
+
+    override suspend fun getVehiclesByUserId(userId: VehicleId): List<VehicleDTO> {
+        val vehicleEntities = dbQuery {
+            VehicleEntity.find(VehiclesTable.userId eq userId).toList()
+        }
+
+        if (vehicleEntities.isEmpty()) {
+            throw EntityWithIdNotFound("Vehicles for User ", userId)
+        }
+
+        return vehicleEntities.map { it.toVehicleDTO() }
     }
 
     override suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO) {

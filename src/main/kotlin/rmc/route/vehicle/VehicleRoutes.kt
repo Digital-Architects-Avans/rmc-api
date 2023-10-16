@@ -24,17 +24,17 @@ fun Route.vehicleRoutes() {
                 call.respond(vehicle)
             }
 
-            get("/vehicle{id}") {
+            get("/{id}") {
 //                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
 //                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
 //                if (userType != "STAFF") throw WrongUserType()
                 val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
-                val found = vehicleRepository.getVehicleByID(id)
+                val found = vehicleRepository.getVehicleById(id)
                 found.let { call.respond(it) }
             }
 
-            get("/vehicles") {
+            get("/all") {
 //                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
 //                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 //
@@ -49,7 +49,7 @@ fun Route.vehicleRoutes() {
 
 //                if (userType != "STAFF") throw WrongUserType()
                 val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
-                val found = vehicleRepository.getVehicleByID(id)
+                val found = vehicleRepository.getVehiclesByUserId(id)
                 found.let { call.respond(it) }
             }
 
@@ -66,4 +66,3 @@ fun Route.vehicleRoutes() {
             }
         }
     }
-}

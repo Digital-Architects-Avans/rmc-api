@@ -39,10 +39,23 @@ Content-Type: application/json
 }
 
 ###
-// GET A VEHICLE BY ID without auth
+// GET ALL VEHICLES without auth
 
-GET http://localhost:8080/vehicle/1
+GET http://localhost:8080/vehicle/all
 Accept: application/json
 
 ###
 
+// GET VEHCILE BY ID without auth
+
+GET http://localhost:8080/vehicle/2
+Accept: application/json
+
+###
+
+// GET VEHCILES BY USERID without auth
+
+GET http://localhost:8080/vehicle/user1
+Accept: application/json
+
+###
