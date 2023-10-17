@@ -1,6 +1,9 @@
 package rmc.dto.rental
 
 import kotlinx.serialization.Serializable
+import rmc.db.dao.RentalStatus
+
+typealias RentalId = Int
 
 @Serializable
 data class RentalDTO(
@@ -10,7 +13,7 @@ data class RentalDTO(
     val date: String,
     val price: Float,
     val location: String,
-    val status: String,
+    val status: RentalStatus,
     val distanceTravelled: Float,
     val score: Int
 )
