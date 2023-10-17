@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "year": 2021,
   "vehicleClass": "Test",
   "engineType": "Diesel",
-  "licensePlate": "CC-AA-00",
+  "licensePlate": "CC-AA-11",
   "imgLink": "https://www.google.com",
   "vehicleLocation": "Test",
   "price": 250.00,
@@ -72,5 +72,9 @@ Content-Type: application/json
   "availability": "donderdag"
 }
 
+###
+// DELETE VEHICLE without auth
+DELETE http://localhost:8080/vehicle/1
+Accept: application/json
 
 ###

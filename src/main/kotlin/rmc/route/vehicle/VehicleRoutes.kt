@@ -2,6 +2,8 @@ package rmc.route.vehicle
 
 import rmc.error.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -67,10 +69,11 @@ fun Route.vehicleRoutes() {
                 }
             }
 
-            delete() {
-
-                TODO()
-
+            delete("/{id}") {
+//                val principal = call.principal<JWTPrincipal>()
+//                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
+                val vehicleId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                call.respond(vehicleRepository.deleteVehicle(vehicleId))
             }
         }
     }

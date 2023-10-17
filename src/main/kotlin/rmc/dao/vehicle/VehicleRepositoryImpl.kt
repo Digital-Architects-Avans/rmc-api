@@ -83,7 +83,7 @@ class VehicleRepositoryImpl : VehicleRepository {
         } ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
     }
 
-    override suspend fun deleteVehicle(vehicleId: VehicleId) {
-        TODO("Not yet implemented")
+    override suspend fun deleteVehicle(vehicleId: VehicleId) = dbQuery {
+        VehicleEntity.findById(vehicleId)?.delete() ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
     }
 }
