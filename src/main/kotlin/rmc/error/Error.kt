@@ -7,6 +7,7 @@ import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
+import rmc.db.dao.UserType
 
 open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"status":"$entity with id $id not found"}""")
 class InvalidEmailError : Exception("""{"status":"Invalid email"}""")
@@ -21,7 +22,7 @@ class WrongEmailFormat : Exception("""{"status":"Wrong email format"}""")
 class WrongPasswordFormat : Exception("""{"status":"Wrong password format"}""")
 class BearerStrangeError : Exception("""{"Authorization":"Bearer something.very.strange"}""")
 class WrongUserType : Exception("""{"status":"Access denied"}""")
-class MissingPermissionError(requiredUserType: String) : Exception("""{"status":"User is not $requiredUserType"}""")
+class MissingPermissionError(requiredUserType: UserType) : Exception("""{"status":"User is not $requiredUserType"}""")
 
 @OptIn(ExperimentalSerializationApi::class)
 fun Application.configureStatusPages() {
