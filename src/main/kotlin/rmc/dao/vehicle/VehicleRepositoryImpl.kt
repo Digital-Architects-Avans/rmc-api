@@ -68,8 +68,19 @@ class VehicleRepositoryImpl : VehicleRepository {
         return vehicleEntities.map { it.toVehicleDTO() }
     }
 
-    override suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO) {
-        TODO("Not yet implemented")
+    override suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO) = dbQuery {
+        VehicleEntity.findById(vehicleId)?.let {
+            it.brand = vehicle.brand
+            it.model = vehicle.model
+            it.year = vehicle.year
+            it.vehicleClass = vehicle.vehicleClass
+            it.engineType = vehicle.engineType
+            it.licensePlate = vehicle.licensePlate
+            it.imgLink = vehicle.imgLink
+            it.vehicleLocation = vehicle.vehicleLocation
+            it.price = vehicle.price
+            it.availability = vehicle.availability
+        } ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
     }
 
     override suspend fun deleteVehicle(vehicleId: VehicleId) {

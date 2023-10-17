@@ -14,8 +14,6 @@ data class UpdateVehicleDTO(
     val licensePlate: String,
     val imgLink: String,
     val vehicleLocation: String,
-    val price: String,
+    val price: Float,
     val availability: String
-){
-
-}
+)
