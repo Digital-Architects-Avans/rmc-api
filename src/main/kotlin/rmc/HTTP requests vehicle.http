@@ -10,7 +10,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "model": "Focus",
   "year": 2021,
   "vehicleClass": "Test",
-  "engineType": "Diesel",
+  "engineType": "ICE",
   "licensePlate": "CC-AA-11",
   "imgLink": "https://www.google.com",
   "vehicleLocation": "Test",
@@ -30,7 +30,7 @@ Content-Type: application/json
   "model": "Banana",
   "year": "1997",
   "vehicleClass": "Sedan",
-  "engineType": "EV",
+  "engineType": "FBEV",
   "licensePlate": "ww-900-li",
   "imgLink": "http/imglinky.link",
   "vehicleLocation": "Breda",
@@ -74,7 +74,7 @@ Content-Type: application/json
 
 ###
 // DELETE VEHICLE without auth
-DELETE http://localhost:8080/vehicle/1
+DELETE http://localhost:8080/vehicle/3
 Accept: application/json
 
 ###

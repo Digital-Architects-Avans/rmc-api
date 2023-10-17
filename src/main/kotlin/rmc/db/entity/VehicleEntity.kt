@@ -6,6 +6,10 @@ import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.tables.VehiclesTable
 import rmc.dto.vehicle.VehicleDTO
 
+enum class EngineType {
+    ICE, CEV, FBEV
+}
+
 class VehicleEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<VehicleEntity>(VehiclesTable)
 

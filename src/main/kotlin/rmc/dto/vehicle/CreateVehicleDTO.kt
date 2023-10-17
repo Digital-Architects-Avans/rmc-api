@@ -1,6 +1,7 @@
 package rmc.dto.vehicle
 
 import kotlinx.serialization.Serializable
+import rmc.db.entity.EngineType
 
 @Serializable
 data class CreateVehicleDTO (
@@ -8,7 +9,7 @@ data class CreateVehicleDTO (
     val model: String,
     val year: Int,
     val vehicleClass: String,
-    val engineType: String,
+    val engineType: EngineType,
     val licensePlate: String,
     val imgLink: String,
     val vehicleLocation: String,
