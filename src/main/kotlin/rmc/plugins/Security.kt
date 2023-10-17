@@ -1,6 +1,5 @@
 package rmc.plugins
 
-
 import com.typesafe.config.ConfigFactory
 import rmc.utils.TokenManager
 import io.ktor.http.*
@@ -36,9 +35,7 @@ fun Application.configureSecurity() {
 
             challenge { _, _ ->
                 call.respondText(Json.encodeToString(mapOf("Authorization" to "Bearer something.very.strange")), status = HttpStatusCode.Unauthorized)
-
             }
-
         }
     }
 
