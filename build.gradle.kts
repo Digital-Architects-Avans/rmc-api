@@ -49,6 +49,7 @@ dependencies {
     implementation("com.zaxxer:HikariCP:$hikaricpVersion")
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
     implementation("io.ktor:ktor-server-rate-limit:$ktorVersion")
+    implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
     testImplementation("io.ktor:ktor-server-test-host-jvm:2.3.5")
     testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
