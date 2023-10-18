@@ -1,13 +1,13 @@
 package rmc.repository.user
 
+import org.mindrot.jbcrypt.BCrypt
+import rmc.db.DatabaseFactory.dbQuery
+import rmc.db.dao.UserEntity
+import rmc.db.dao.toUserDto
+import rmc.db.tables.UsersTable
 import rmc.dto.user.*
 import rmc.error.AuthenticationFailed
 import rmc.error.EntityWithIdNotFound
-import rmc.db.dao.UserEntity
-import rmc.db.tables.UsersTable
-import rmc.db.dao.toUserDto
-import org.mindrot.jbcrypt.BCrypt
-import rmc.db.DatabaseFactory.dbQuery
 
 class UserRepositoryImpl : UserRepository {
     override suspend fun allUsers(): List<UserDTO> = dbQuery {
@@ -54,3 +54,5 @@ class UserRepositoryImpl : UserRepository {
         return userEntity.toUserDto()
     }
 }
+
+val userRepository: UserRepository = UserRepositoryImpl()

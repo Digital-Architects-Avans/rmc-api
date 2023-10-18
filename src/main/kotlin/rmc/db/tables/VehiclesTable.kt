@@ -14,7 +14,7 @@ object VehiclesTable : IntIdTable() {
     val imgLink = varchar("imgLink", 100).default("")
     val vehicleLocation = varchar("vehicleLocation", 100).default("")
     val price = float("price").default(0.0F)
-    val availability = varchar("availability", 100).default("")
+    val availability = bool("availability").default(true)
 
     init {
         index(true, licensePlate)

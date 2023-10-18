@@ -9,7 +9,8 @@ import rmc.dto.rental.RentalDTO
 enum class RentalStatus(val status: String) {
     PENDING("PENDING"),
     APPROVED("APPROVED"),
-    DENIED("DENIED")
+    DENIED("DENIED"),
+    CANCELLED("CANCELLED")
 }
 class RentalEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<RentalEntity>(RentalsTable)
@@ -33,7 +34,7 @@ fun RentalEntity.toRentalDTO() = RentalDTO(
     this.date,
     this.price,
     this.location,
-    this.status.status,
+    this.status,
     this.distanceTravelled,
     this.score
 )

@@ -46,14 +46,16 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.ktor:ktor-server-request-validation:$ktorVersion")
     implementation("org.mindrot:jbcrypt:0.4")
-    testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     implementation("com.zaxxer:HikariCP:$hikaricpVersion")
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
     implementation("io.ktor:ktor-server-rate-limit:$ktorVersion")
+    implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
-
-
+    testImplementation("io.ktor:ktor-server-test-host-jvm:2.3.5")
+    testImplementation("io.ktor:ktor-server-tests-jvm:2.2.4")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("io.ktor:ktor-client-content-negotiation:2.2.4")
 
 
 

@@ -1,16 +1,9 @@
 package rmc.route.user
 
 import com.typesafe.config.ConfigFactory
-import rmc.dto.user.SigninDTO
-import rmc.dto.user.SignupDTO
-import rmc.dto.user.UpdateUserDTO
-import rmc.error.*
-import rmc.repository.user.UserRepositoryImpl
-import rmc.utils.TokenManager
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
 import io.ktor.server.config.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
@@ -18,10 +11,19 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import rmc.db.dao.UserType
+import rmc.dto.user.SigninDTO
+import rmc.dto.user.SignupDTO
+import rmc.dto.user.UpdateUserDTO
+import rmc.error.*
+import rmc.plugins.authorize
+import rmc.plugins.currentUserId
+import rmc.repository.user.userRepository
+import rmc.utils.TokenManager
+
 
 fun Route.userRoutes() {
     val tokenManager = TokenManager(HoconApplicationConfig(ConfigFactory.load()))
-    val userRepository = UserRepositoryImpl()
 
     route("/user") {
         rateLimit {
@@ -54,30 +56,67 @@ fun Route.userRoutes() {
 
             authenticate {
                 get("/users") {
-                    val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-                    val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.STAFF, user)
 
-                    if (userType != "STAFF") throw WrongUserType()
                     val users = userRepository.allUsers()
                     call.respond(users)
                 }
 
                 get("/{id}") {
-                    val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-                    val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.STAFF, user)
 
-                    if (userType != "STAFF") throw WrongUserType()
                     val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
                     val found = userRepository.getUserById(id)
                     found.let { call.respond(it) }
                 }
 
                 put("/{id}") {
-                    val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-                    val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.STAFF, user)
 
-                    if (userType != "STAFF") throw WrongUserType()
-                    val userId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val updateUserDTO = call.receive<UpdateUserDTO>()
+
+                    try {
+                        val existingUser = userRepository.getUserById(id)
+                        if (existingUser.email != updateUserDTO.email) throw EmailUpdateAttemptError()
+                        userRepository.updateUser(id, updateUserDTO)
+                        val updatedUser = userRepository.getUserById(id)
+                        call.respond(updatedUser)
+                    } catch (e: EntityWithIdNotFound) {
+                        val signUpDto = SignupDTO(updateUserDTO.email, updateUserDTO.userType, updateUserDTO.password)
+                        val newUser = userRepository.createUser(signUpDto)
+                        call.respond(newUser)
+                    }
+                }
+
+                delete("/{id}") {
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.STAFF, user)
+
+                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    call.respond(userRepository.deleteUser(id))
+                }
+
+                get("/me") {
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.CLIENT, user)
+
+                    call.respond(user)
+                }
+
+                put("/me") {
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.CLIENT, user)
+
                     val updateUserDTO = call.receive<UpdateUserDTO>()
 
                     try {
@@ -92,47 +131,14 @@ fun Route.userRoutes() {
                         call.respond(newUser)
                     }
                 }
-            }
 
-            delete("/{id}") {
-                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                delete("/me") {
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.CLIENT, user)
 
-                if (userType != "STAFF") throw WrongUserType()
-                val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
-                call.respond(userRepository.deleteUser(id))
-            }
-
-
-            get("/me") {
-                val principal = call.principal<JWTPrincipal>()
-                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
-                val user = userRepository.getUserById(userId)
-                call.respond(user)
-            }
-
-            put("/me") {
-                val principal = call.principal<JWTPrincipal>()
-                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
-                val updateUserDTO = call.receive<UpdateUserDTO>()
-
-                try {
-                    val existingUser = userRepository.getUserById(userId)
-                    if (existingUser.email != updateUserDTO.email) throw EmailUpdateAttemptError()
-                    userRepository.updateUser(userId, updateUserDTO)
-                    val updatedUser = userRepository.getUserById(userId)
-                    call.respond(updatedUser)
-                } catch (e: EntityWithIdNotFound) {
-                    val signUpDto = SignupDTO(updateUserDTO.email, updateUserDTO.userType, updateUserDTO.password)
-                    val newUser = userRepository.createUser(signUpDto)
-                    call.respond(newUser)
+                    call.respond(userRepository.deleteUser(userId))
                 }
-            }
-
-            delete("/me") {
-                val principal = call.principal<JWTPrincipal>()
-                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
-                call.respond(userRepository.deleteUser(userId))
             }
         }
     }
