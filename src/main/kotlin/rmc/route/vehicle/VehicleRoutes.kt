@@ -44,33 +44,38 @@ fun Route.vehicleRoutes() {
             get("/user") {
                 val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
                 val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
-
                 if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
                 val id = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
-
                 val found = vehicleRepository.getVehiclesByUserId(id)
                 found.let { call.respond(it) }
             }
 
             put("/{id}") {
-//                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-//                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
-//                if (userType != "STAFF") throw WrongUserType()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
                 val vehicleId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
                 val updateVehicleDTO = call.receive<UpdateVehicleDTO>()
                 try {
+                    val checkVehicle = vehicleRepository.getVehicleById(vehicleId)
+                    if (checkVehicle.userId != userId) throw EntityWithIdNotFound(" oops ", vehicleId)
                     vehicleRepository.updateVehicle(vehicleId, updateVehicleDTO)
                     val updatedVehicle = vehicleRepository.getVehicleById(vehicleId)
                     call.respond(updatedVehicle)
                 } catch (e: EntityWithIdNotFound) {
-                    call.respond(vehicleId)
+                    call.respond("Vehicle $vehicleId for User $userId not found")
                 }
             }
 
             delete("/{id}") {
-//                val principal = call.principal<JWTPrincipal>()
-//                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
+                val userId = principal?.payload?.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
                 val vehicleId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                val checkVehicle = vehicleRepository.getVehicleById(vehicleId)
+                if (checkVehicle.userId != userId) throw EntityWithIdNotFound("VehicleId $vehicleId for User", userId)
                 call.respond(vehicleRepository.deleteVehicle(vehicleId))
             }
         }

@@ -48,14 +48,6 @@ class VehicleRepositoryImpl : VehicleRepository {
         }
     }
 
-//    override suspend fun getVehiclesByUserId(userId: VehicleId ): List<VehicleDTO> {
-//        val vehicleEntity = dbQuery {
-//            VehicleEntity.find(VehiclesTable.userId eq userId).firstOrNull()
-//                ?: throw EntityWithIdNotFound("Vehicles with User ", userId)
-//        }
-//        return vehicleEntity.toVehicleDTO()
-//    }
-
     override suspend fun getVehiclesByUserId(userId: VehicleId): List<VehicleDTO> {
         val vehicleEntities = dbQuery {
             VehicleEntity.find(VehiclesTable.userId eq userId).toList()
