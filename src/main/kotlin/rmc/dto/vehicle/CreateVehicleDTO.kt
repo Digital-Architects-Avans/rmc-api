@@ -13,5 +13,5 @@ data class CreateVehicleDTO (
     val imgLink: String,
     val vehicleLocation: String,
     val price: Float,
-    val availability: String
+    val availability: Boolean
 )
