@@ -1,9 +1,9 @@
 
 ###
-// CREATE A VEHICLE (userType: STAFF)
+// CREATE A VEHICLE (with auth)
 POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
 
 {
   "brand": "Ford",
@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "year": 2021,
   "vehicleClass": "Test",
   "engineType": "ICE",
-  "licensePlate": "CC-AA-11",
+  "licensePlate": "qql-sl-11",
   "imgLink": "https://www.google.com",
   "vehicleLocation": "Test",
   "price": 250.00,
@@ -19,37 +19,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// CREATE A VEHICLE without auth
+// GET VEHCILE BY ID (STAFF and CLIENT only with auth)
 
-POST http://0.0.0.0:8080/vehicle/createVehicle
+GET http://localhost:8080/vehicle/6
 Accept: application/json
-Content-Type: application/json
-
-{
-  "brand": "Mercedes",
-  "model": "Banana",
-  "year": "1997",
-  "vehicleClass": "Sedan",
-  "engineType": "FBEV",
-  "licensePlate": "ww-900-li",
-  "imgLink": "http/imglinky.link",
-  "vehicleLocation": "Breda",
-  "price": 19.90,
-  "availability": "woensdag"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
 
 ###
-// GET ALL VEHICLES without auth
+// GET ALL VEHICLES (STAFF and CLIENT only with auth)
 
 GET http://localhost:8080/vehicle/all
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN1cGVyQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEzLCJleHAiOjE2OTc2NDk5MTd9.0vHrvVtve2dQQ_1ELBZ0iGx0zxkgBpyqY2GNwqJJeGI
 
 ###
+// GET VEHCILES BY USER ID with auth
 
-// GET VEHCILE BY ID without auth
-
-GET http://localhost:8080/vehicle/2
+GET http://localhost:8080/vehicle/user
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
 
 ###
 

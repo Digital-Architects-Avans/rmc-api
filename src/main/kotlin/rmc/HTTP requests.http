@@ -68,7 +68,7 @@ PUT http://localhost:8080/user/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
 
-{"email": "alex@email.com",
+{"email": "lex@email.com",
   "userType": "staff",
   "password": "password123",
   "firstName": "firstName",
@@ -90,7 +90,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // GET ALL USERS (userType: STAFF)
 GET http://localhost:8080/user/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzM5NTk2Nn0.n93MQIpseENiPaWIY8RfUmm1LF8Y3lh1fuJb5pX3Kis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzY0OTA2N30.A3ddLU67cTA5UWlB29Pg-3561B1GVP1RItUwNt3UvUI
 
 ###
 // AUTHENTICATE USER (no auth)
@@ -98,7 +98,7 @@ POST http://localhost:8080/user/signin
 Content-Type: application/json
 
 {
-  "email": "alex@email.com",
+  "email": "super@email.com",
   "password": "StrongPassword1!"
 }
 
@@ -108,8 +108,8 @@ POST http://localhost:8080/user/signup
 Content-Type: application/json
 
 {
-  "email": "client3@email.com",
-  "userType": "CLIENT",
+  "email": "super@email.com",
+  "userType": "STAFF",
   "password": "StrongPassword1!"
 }
 

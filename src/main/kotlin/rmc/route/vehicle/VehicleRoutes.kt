@@ -14,47 +14,45 @@ import rmc.dto.vehicle.UpdateVehicleDTO
 fun Route.vehicleRoutes() {
     val vehicleRepository = VehicleRepositoryImpl()
 
-//    authenticate {
+    authenticate {
         route("/vehicle") {
             post("/createVehicle") {
                 val createVehicleDTO = call.receive<CreateVehicleDTO>()
-//                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-//                val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
-                val userId = 1
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userId = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
                 val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
                 call.respond(vehicle)
             }
 
             get("/{id}") {
-//                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-//                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
-
-//                if (userType != "STAFF") throw WrongUserType()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
                 val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
                 val found = vehicleRepository.getVehicleById(id)
                 found.let { call.respond(it) }
             }
 
             get("/all") {
-//                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-//                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
-//
-//                if (userType != "STAFF") throw WrongUserType()
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+                if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
                 val vehicles = vehicleRepository.getAllVehicles()
                 call.respond(vehicles)
             }
 
-            get("/user{id}") {
-//                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
-//                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
+            get("/user") {
+                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
+                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
-//                if (userType != "STAFF") throw WrongUserType()
-                val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
+                val id = principal.payload.getClaim("email")?.asInt() ?: throw AuthenticationFailed()
+
                 val found = vehicleRepository.getVehiclesByUserId(id)
                 found.let { call.respond(it) }
             }
 
-            put ("/{id}"){
+            put("/{id}") {
 //                val principal = call.principal<JWTPrincipal>() ?: throw AuthenticationFailed()
 //                val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 //                if (userType != "STAFF") throw WrongUserType()
@@ -77,3 +75,4 @@ fun Route.vehicleRoutes() {
             }
         }
     }
+}
