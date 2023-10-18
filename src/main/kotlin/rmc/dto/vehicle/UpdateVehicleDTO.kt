@@ -4,7 +4,8 @@ import kotlinx.serialization.Serializable
 import rmc.db.entity.EngineType
 
 @Serializable
-data class CreateVehicleDTO (
+data class UpdateVehicleDTO(
+    val userId: Int,
     val brand: String,
     val model: String,
     val year: Int,
@@ -14,5 +15,5 @@ data class CreateVehicleDTO (
     val imgLink: String,
     val vehicleLocation: String,
     val price: Float,
-    val availability: Boolean
+    val availability: String
 )

@@ -12,24 +12,74 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "score": 100
 }
 
+
 ###
-// CREATE A VEHICLE (userType: STAFF)
+// CREATE A VEHICLE (with auth)
 POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
 
 {
   "brand": "Ford",
   "model": "Focus",
   "year": 2021,
   "vehicleClass": "Test",
-  "engineType": "Diesel",
-  "licensePlate": "CC-AA-00",
+  "engineType": "ICE",
+  "licensePlate": "qql-sl-11",
   "imgLink": "https://www.google.com",
   "vehicleLocation": "Test",
   "price": 250.00,
   "availability": "Test"
 }
+
+###
+// GET VEHCILE BY ID (STAFF and CLIENT only with auth)
+
+GET http://localhost:8080/vehicle/6
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
+
+###
+// GET ALL VEHICLES (STAFF and CLIENT only with auth)
+
+GET http://localhost:8080/vehicle/all
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
+
+###
+// GET VEHCILES BY USER ID with auth
+
+GET http://localhost:8080/vehicle/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImJvYkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTEsImV4cCI6MTY5NzY0OTkxN30.WW4LrKF87z_BzltDymrEU_wXGTp9Dj80h88dLsXyEg8
+
+###
+
+// UPDATE VEHCILES BY ID with auth
+
+PUT http://localhost:8080/vehicle/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
+
+{
+  "userId": 12,
+  "brand": "super alice Toyota",
+  "model": "Camry",
+  "year": 2022,
+  "vehicleClass": "Sedan",
+  "engineType": "ICE",
+  "licensePlate": "AB-C1-30",
+  "imgLink": "car-image.jpg",
+  "vehicleLocation": "New York",
+  "price": 250.0,
+  "availability": "donderdag"
+}
+
+###
+// DELETE VEHICLE without auth
+DELETE http://localhost:8080/vehicle/6
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
 
 ###
 // DELETE USER FROM JWT TOKEN (userType: all)
@@ -68,7 +118,7 @@ PUT http://localhost:8080/user/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
 
-{"email": "alex@email.com",
+{"email": "lex@email.com",
   "userType": "staff",
   "password": "password123",
   "firstName": "firstName",
@@ -90,7 +140,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // GET ALL USERS (userType: STAFF)
 GET http://localhost:8080/user/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzM5NTk2Nn0.n93MQIpseENiPaWIY8RfUmm1LF8Y3lh1fuJb5pX3Kis
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzY0OTA2N30.A3ddLU67cTA5UWlB29Pg-3561B1GVP1RItUwNt3UvUI
 
 ###
 // AUTHENTICATE USER (no auth)
@@ -98,7 +148,7 @@ POST http://localhost:8080/user/signin
 Content-Type: application/json
 
 {
-  "email": "alex@email.com",
+  "email": "alice@email.com",
   "password": "StrongPassword1!"
 }
 
@@ -108,8 +158,8 @@ POST http://localhost:8080/user/signup
 Content-Type: application/json
 
 {
-  "email": "client3@email.com",
-  "userType": "CLIENT",
+  "email": "super@email.com",
+  "userType": "STAFF",
   "password": "StrongPassword1!"
 }
 
