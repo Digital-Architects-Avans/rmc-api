@@ -46,7 +46,7 @@ fun Route.vehicleRoutes() {
                 val userType = principal.payload.getClaim("userType")?.asString() ?: throw AuthenticationFailed()
 
                 if (userType != "STAFF" && userType != "CLIENT") throw WrongUserType()
-                val id = principal.payload.getClaim("email")?.asInt() ?: throw AuthenticationFailed()
+                val id = principal.payload.getClaim("userId")?.asInt() ?: throw AuthenticationFailed()
 
                 val found = vehicleRepository.getVehiclesByUserId(id)
                 found.let { call.respond(it) }
