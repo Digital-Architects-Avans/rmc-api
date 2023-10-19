@@ -7,7 +7,7 @@ import rmc.db.tables.VehiclesTable
 import rmc.dto.vehicle.VehicleDTO
 
 enum class EngineType {
-    ICE, CEV, FBEV
+    ICE, BEV, FCEV
 }
 
 class VehicleEntity(id: EntityID<Int>) : IntEntity(id) {
@@ -20,7 +20,8 @@ class VehicleEntity(id: EntityID<Int>) : IntEntity(id) {
     var engineType by VehiclesTable.engineType
     var licensePlate by VehiclesTable.licensePlate
     var imgLink by VehiclesTable.imgLink
-    var vehicleLocation by VehiclesTable.vehicleLocation
+    var latitude by VehiclesTable.latitude
+    var longitude by VehiclesTable.longitude
     var price by VehiclesTable.price
     var availability by VehiclesTable.availability
 
@@ -38,7 +39,8 @@ fun VehicleEntity.toVehicleDTO() = VehicleDTO(
     this.engineType,
     this.licensePlate,
     this.imgLink,
-    this.vehicleLocation,
+    this.latitude,
+    this.longitude,
     this.price,
     this.availability
 )
