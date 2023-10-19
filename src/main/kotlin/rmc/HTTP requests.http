@@ -1,62 +1,52 @@
 // CREATE A RENTAL WITH {VEHICLEID} (userType: STAFF)
-POST http://localhost:8080/rental/createRental/1
+POST http://localhost:8080/rental/createRental/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJjbGllbnRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzM4NTA4Nn0.dDrpBTo17hARw9k8NyULadxuhpfXwOKf-K7NquVw9nI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcxNjc2MH0.rig6ev8vzwZ4IP_F7mj8KDJcr4Fdq4vUogBcXbnV0LQ
 
 {
-  "date": "",
-  "price": 100.00,
-  "location": "Test",
-  "status": "MakeThisAnEnum",
-  "distanceTravelled": 0.00,
-  "score": 100
+  "date": "2023-10-29"
 }
-
 
 ###
 // CREATE A VEHICLE (with auth)
 POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcxNjc2MH0.rig6ev8vzwZ4IP_F7mj8KDJcr4Fdq4vUogBcXbnV0LQ
 
 {
-  "brand": "Ford",
-  "model": "Focus",
-  "year": 2021,
+  "brand": "Tesla",
+  "model": "Model S",
+  "year": 2023,
   "vehicleClass": "Test",
-  "engineType": "ICE",
-  "licensePlate": "qql-sl-11",
+  "engineType": "BEV",
+  "licensePlate": "04-ALF-7",
   "imgLink": "https://www.google.com",
-  "vehicleLocation": "Test",
+  "latitude": 51.571915,
+  "longitude": 4.768323,
   "price": 250.00,
-  "availability": "Test"
+  "availability": true
 }
 
 ###
 // GET VEHCILE BY ID (STAFF and CLIENT only with auth)
-
-GET http://localhost:8080/vehicle/6
+GET http://localhost:8080/vehicle/2
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjQ5OTE3fQ.1cqUFnY2_YUbk_UequP8W9W2jifMvE82Bco95CzzNKE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3NjY1MjgzfQ.5cw1MAmTNDplg-TOUJWPU8HQ8_6zBooB1My3_s4q23Y
 
 ###
 // GET ALL VEHICLES (STAFF and CLIENT only with auth)
-
 GET http://localhost:8080/vehicle/all
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
 
 ###
 // GET VEHCILES BY USER ID with auth
-
 GET http://localhost:8080/vehicle/user
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImJvYkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTEsImV4cCI6MTY5NzY0OTkxN30.WW4LrKF87z_BzltDymrEU_wXGTp9Dj80h88dLsXyEg8
-
 ###
 
 // UPDATE VEHCILES BY ID with auth
-
 PUT http://localhost:8080/vehicle/4
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
@@ -70,9 +60,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "engineType": "ICE",
   "licensePlate": "AB-C1-30",
   "imgLink": "car-image.jpg",
-  "vehicleLocation": "New York",
+  "latitude": 51.559520251527005,
+  "longitude": 4.661058457551144,
   "price": 250.0,
-  "availability": "donderdag"
+  "availability": true
 }
 
 ###
@@ -148,7 +139,7 @@ POST http://localhost:8080/user/signin
 Content-Type: application/json
 
 {
-  "email": "alice@email.com",
+  "email": "client2@email.com",
   "password": "StrongPassword1!"
 }
 
@@ -158,8 +149,8 @@ POST http://localhost:8080/user/signup
 Content-Type: application/json
 
 {
-  "email": "super@email.com",
-  "userType": "STAFF",
+  "email": "client2@email.com",
+  "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
 
