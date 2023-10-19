@@ -69,7 +69,7 @@ fun Route.userRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.STAFF, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw WrongFormat("id")
                     val found = userRepository.getUserById(id)
                     found.let { call.respond(it) }
                 }
@@ -79,7 +79,7 @@ fun Route.userRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.STAFF, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     val updateUserDTO = call.receive<UpdateUserDTO>()
 
                     try {
@@ -100,7 +100,7 @@ fun Route.userRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.STAFF, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     call.respond(userRepository.deleteUser(id))
                 }
 
