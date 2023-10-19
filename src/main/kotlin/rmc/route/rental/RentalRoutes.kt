@@ -38,7 +38,7 @@ fun Route.rentalRoutes() {
                     authorize(UserType.CLIENT, user)
 
                     // Check if user is owner of rental
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     val rental = rentalRepository.getRentalById(id)
                     if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", id)
 
@@ -51,7 +51,7 @@ fun Route.rentalRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.CLIENT, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
 
                     // Filter results to rentals matched to the userId of client
                     val found = rentalRepository.getRentalByVehicleId(id).filter { it.userId == userId }
@@ -64,7 +64,7 @@ fun Route.rentalRoutes() {
                     authorize(UserType.CLIENT, user)
 
                     val createRentalDTO = call.receive<CreateRentalDTO>()
-                    val vehicleId = call.parameters["vehicleId"]?.toInt() ?: throw WrongIdFormatException()
+                    val vehicleId = call.parameters["vehicleId"]?.toInt() ?: throw throw WrongFormat("id")
 
                     val vehicle = vehicleRepository.getVehicleById(vehicleId)
 
@@ -88,7 +88,7 @@ fun Route.rentalRoutes() {
                     val updateRentalDTO = call.receive<UpdateRentalDTO>()
 
                     // Check if user is owner of rental
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     val rental = rentalRepository.getRentalById(id)
                     if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", id)
 
@@ -102,7 +102,7 @@ fun Route.rentalRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.CLIENT, user)
 
-                    val rentalId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val rentalId = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     val inputStatus = call.request.queryParameters["status"]?.lowercase() ?: throw StatusNotFound()
                     val enumStatus = RentalStatus.valueOf(inputStatus)
 
@@ -129,7 +129,7 @@ fun Route.rentalRoutes() {
                     authorize(UserType.CLIENT, user)
 
                     // Check if user is owner of rental
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     val rental = rentalRepository.getRentalById(id)
                     if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", id)
 
@@ -151,7 +151,7 @@ fun Route.rentalRoutes() {
                     authorize(UserType.STAFF, user)
 
                     val updateRentalDTO = call.receive<UpdateRentalDTO>()
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
 
                     rentalRepository.updateRental(id, updateRentalDTO)
                     val updatedRental = rentalRepository.getRentalById(id)
@@ -163,7 +163,7 @@ fun Route.rentalRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.STAFF, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
                     call.respond(rentalRepository.deleteRental(id))
                 }
             }
