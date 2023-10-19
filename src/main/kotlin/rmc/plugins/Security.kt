@@ -1,8 +1,6 @@
 package rmc.plugins
 
 import com.typesafe.config.ConfigFactory
-import rmc.utils.TokenManager
-import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
@@ -11,10 +9,9 @@ import io.ktor.server.plugins.*
 import io.ktor.server.plugins.callloging.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
-import io.ktor.server.response.*
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.slf4j.event.Level
+import rmc.error.AuthenticationFailed
+import rmc.utils.TokenManager
 import kotlin.time.Duration.Companion.seconds
 
 fun Application.configureSecurity() {
@@ -34,7 +31,7 @@ fun Application.configureSecurity() {
             }
 
             challenge { _, _ ->
-                call.respondText(Json.encodeToString(mapOf("Authorization" to "Bearer something.very.strange")), status = HttpStatusCode.Unauthorized)
+                throw AuthenticationFailed()
             }
         }
     }
