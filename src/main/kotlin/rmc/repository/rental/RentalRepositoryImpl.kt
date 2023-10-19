@@ -1,11 +1,8 @@
 package rmc.repository.rental
 
-import org.jetbrains.exposed.dao.id.EntityID
 import rmc.db.DatabaseFactory.dbQuery
 import rmc.db.dao.*
 import rmc.db.tables.RentalsTable
-import rmc.db.tables.UsersTable
-import rmc.db.tables.VehiclesTable
 import rmc.dto.rental.CreateRentalDTO
 import rmc.dto.rental.RentalDTO
 import rmc.dto.rental.RentalId
@@ -13,6 +10,8 @@ import rmc.dto.rental.UpdateRentalDTO
 import rmc.dto.user.UserId
 import rmc.dto.vehicle.VehicleId
 import rmc.error.EntityWithIdNotFound
+import rmc.error.NoRentalsForUserFound
+import rmc.repository.vehicle.vehicleRepository
 
 class RentalRepositoryImpl : RentalRepository {
 
@@ -27,15 +26,13 @@ class RentalRepositoryImpl : RentalRepository {
     }
 
     override suspend fun getRentalByUserId(userId: UserId): List<RentalDTO> = dbQuery {
-        RentalEntity.find { RentalsTable.userId eq userId }.map { it.toRentalDTO() }.let {
-            it.ifEmpty { throw EntityWithIdNotFound("userId", userId) }
-        }
+        RentalEntity.find { RentalsTable.userId eq userId }
+            .map { it.toRentalDTO() }
+            .takeIf { it.isNotEmpty() } ?: throw NoRentalsForUserFound()
     }
 
     override suspend fun getRentalByVehicleId(vehicleId: VehicleId): List<RentalDTO> = dbQuery {
-        RentalEntity.find { RentalsTable.vehicleId eq vehicleId }.map { it.toRentalDTO() }.let {
-            it.ifEmpty { throw EntityWithIdNotFound("vehicleId", vehicleId) }
-        }
+        RentalEntity.find { RentalsTable.vehicleId eq vehicleId }.map { it.toRentalDTO() }
     }
 
     override suspend fun createRental(
@@ -45,26 +42,27 @@ class RentalRepositoryImpl : RentalRepository {
     ): RentalDTO = dbQuery {
         UserEntity.findById(userId) ?: throw EntityWithIdNotFound("User", userId)
         VehicleEntity.findById(vehicleId) ?: throw EntityWithIdNotFound("Vehicle", vehicleId)
+        val vehicle = vehicleRepository.getVehicleById(vehicleId)
 
         RentalEntity.new {
-            this.vehicleId = EntityID(vehicleId, VehiclesTable)
-            this.userId = EntityID(userId, UsersTable)
+            this.vehicleId = vehicleId
+            this.userId = userId
             date = rental.date
-            price = rental.price
-            location = rental.location
+            price = vehicle.price
+            longitude = vehicle.longitude
+            latitude = vehicle.latitude
             status = RentalStatus.PENDING
-            distanceTravelled = rental.distanceTravelled
-            score = rental.score
         }.toRentalDTO()
     }
 
     override suspend fun updateRental(rentalId: RentalId, rental: UpdateRentalDTO) = dbQuery {
         RentalEntity.findById(rentalId)?.let {
-            it.vehicleId = EntityID(rental.vehicleId, VehiclesTable)
-            it.userId = EntityID(rental.userId, UsersTable)
+            it.vehicleId = rental.vehicleId
+            it.userId = rental.userId
             it.date = rental.date
             it.price = rental.price
-            it.location = rental.location
+            it.longitude = rental.longitude
+            it.latitude = rental.latitude
             it.status = rental.status
             it.distanceTravelled = rental.distanceTravelled
             it.score = rental.score
