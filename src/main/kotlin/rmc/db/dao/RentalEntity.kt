@@ -30,8 +30,8 @@ class RentalEntity(id: EntityID<Int>) : IntEntity(id) {
 
 fun RentalEntity.toRentalDTO() = RentalDTO(
     this.id.value,
-    this.vehicleId.value,
-    this.userId.value,
+    this.vehicleId,
+    this.userId,
     this.date,
     this.price,
     this.latitude,
