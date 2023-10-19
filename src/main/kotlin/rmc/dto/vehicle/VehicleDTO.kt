@@ -1,7 +1,9 @@
 package rmc.dto.vehicle
 
 import kotlinx.serialization.Serializable
-import rmc.db.entity.EngineType
+import rmc.db.dao.EngineType
+import rmc.plugins.BigDecimalSerializer
+import java.math.BigDecimal
 
 typealias VehicleId = Int
 
@@ -16,7 +18,10 @@ data class VehicleDTO (
     val engineType: EngineType,
     val licensePlate: String,
     val imgLink: String,
-    val vehicleLocation: String,
+    @Serializable(with = BigDecimalSerializer::class)
+    val latitude: BigDecimal,
+    @Serializable(with = BigDecimalSerializer::class)
+    val longitude: BigDecimal,
     val price: Float,
     val availability: Boolean
 )
