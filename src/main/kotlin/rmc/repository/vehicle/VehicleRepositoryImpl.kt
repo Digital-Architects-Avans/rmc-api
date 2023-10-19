@@ -48,6 +48,12 @@ class VehicleRepositoryImpl : VehicleRepository {
         }
     }
 
+    override suspend fun getAllAvailableVehicles(): List<VehicleDTO> = dbQuery{
+        VehicleEntity.all().map {
+            it.toVehicleDTO()
+        }.filter { it.availability }
+    }
+
     override suspend fun getVehiclesByUserId(userId: VehicleId): List<VehicleDTO> {
         val vehicleEntities = dbQuery {
             VehicleEntity.find(VehiclesTable.userId eq userId).toList()
@@ -70,6 +76,12 @@ class VehicleRepositoryImpl : VehicleRepository {
             it.longitude = vehicle.longitude
             it.price = vehicle.price
             it.availability = vehicle.availability
+        } ?: throw EntityWithIdNotFound("vehicle", vehicleId)
+    }
+
+    override suspend fun setVehicleAvailability(vehicleId: VehicleId, availability: Boolean) = dbQuery {
+        VehicleEntity.findById(vehicleId)?.let {
+            it.availability = availability
         } ?: throw EntityWithIdNotFound("vehicle", vehicleId)
     }
 
