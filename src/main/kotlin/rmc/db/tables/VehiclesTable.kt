@@ -1,10 +1,11 @@
 package rmc.db.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.ReferenceOption
 import rmc.db.dao.EngineType
 
 object VehiclesTable : IntIdTable() {
-    val userId = reference("userId", UsersTable.id)
+    val userId = reference("userId", UsersTable.id, onDelete = ReferenceOption.CASCADE)
     val brand = varchar("brand", 100)
     val model = varchar("model", 100)
     val year = integer("year").default(0)
