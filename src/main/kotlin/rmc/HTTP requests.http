@@ -1,7 +1,19 @@
+// GET ALL RENTALS (STAFF)
+GET http://localhost:8080/rental/allRentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzcyMzI4Nn0.B3Z1ETklwUO6jWFDG778EHCH3eBAbSGoaHxZLA-ggs8
+
+###
+// GET RENTALS FROM USERID FROM JWT TOKEN
+GET http://localhost:8080/rental/rentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjgsImV4cCI6MTY5NzcyMzI4Nn0.396ATjnoQ30pupIOZ6K1o1eGuBMNKwMpcGvQ8xlHDes
+
+###
 // CREATE A RENTAL WITH {VEHICLEID} (userType: STAFF)
-POST http://localhost:8080/rental/createRental/2
+POST http://localhost:8080/rental/createRental/9
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcxNjc2MH0.rig6ev8vzwZ4IP_F7mj8KDJcr4Fdq4vUogBcXbnV0LQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjgsImV4cCI6MTY5NzcyMzI4Nn0.396ATjnoQ30pupIOZ6K1o1eGuBMNKwMpcGvQ8xlHDes
 
 {
   "date": "2023-10-29"
@@ -11,7 +23,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // CREATE A VEHICLE (with auth)
 POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcxNjc2MH0.rig6ev8vzwZ4IP_F7mj8KDJcr4Fdq4vUogBcXbnV0LQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjksImV4cCI6MTY5NzcyMzI4Nn0.qNLbILPPB2EMftDV7lag8o4k8GKwS8q_cxCDlHyqud0
 
 {
   "brand": "Tesla",
@@ -19,7 +31,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "year": 2023,
   "vehicleClass": "Test",
   "engineType": "BEV",
-  "licensePlate": "04-ALF-7",
+  "licensePlate": "04-ALF-28",
   "imgLink": "https://www.google.com",
   "latitude": 51.571915,
   "longitude": 4.768323,
@@ -34,18 +46,30 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3NjY1MjgzfQ.5cw1MAmTNDplg-TOUJWPU8HQ8_6zBooB1My3_s4q23Y
 
 ###
-// GET ALL VEHICLES (STAFF and CLIENT only with auth)
+// Set vehicle availability (STAFF and CLIENT only with auth)
+PUT http://localhost:8080/vehicle/setAvailability/7/true
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
+
+###
+// GET ALL AVAILABLE VEHICLES (STAFF and CLIENT only with auth)
+GET http://localhost:8080/vehicle/allAvailable
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
+
+###
+// GET ALL VEHICLES (Client)
 GET http://localhost:8080/vehicle/all
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
 
 ###
-// GET VEHCILES BY USER ID with auth
+// GET VEHCILES BY USER ID FROM JWT
 GET http://localhost:8080/vehicle/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImJvYkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTEsImV4cCI6MTY5NzY0OTkxN30.WW4LrKF87z_BzltDymrEU_wXGTp9Dj80h88dLsXyEg8
-###
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzcyMzI4Nn0.I2neXUImh89jYcRPmCNWERAWK7lUW2inLjSc-T9JtLs
 
+###
 // UPDATE VEHCILES BY ID with auth
 PUT http://localhost:8080/vehicle/4
 Content-Type: application/json
@@ -67,50 +91,55 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// DELETE VEHICLE without auth
-DELETE http://localhost:8080/vehicle/6
+// DELETE OWN VEHICLE (Client)
+DELETE http://localhost:8080/vehicle/9
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImFsaWNlQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoxMiwiZXhwIjoxNjk3NjU0MTM0fQ.-9JS11iMdiZIpiSwsOikrHhjT-qH6tcYeFBc44Ku02Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjksImV4cCI6MTY5NzcyMzI4Nn0.qNLbILPPB2EMftDV7lag8o4k8GKwS8q_cxCDlHyqud0
 
 ###
 // DELETE USER FROM JWT TOKEN (userType: all)
 DELETE http://localhost:8080/user/me
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
 
 ###
-// UPDATE USER FROM JWT TOKEN (userType: all)
-PUT http://localhost:28852/user/me
+// Update user from userId in JWT token (userType: CLIENT)
+PUT http://localhost:8080/user/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6Mjg4NTIvIiwiZW1haWwiOiJzdGFmZjNAZW1haWwuY29tIiwidXNlclR5cGUiOiJzdGFmZiIsInVzZXJJZCI6MTAsImV4cCI6MTY5NjY3OTYzMn0.w2TiAuK9Zd9KIfpy_S0Tcya5IU--xnsBwidlos7TsYA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcyMTMzMn0.5tC-aNjHs0wgAnk9Hk0jeiuGjqgdm2XCnesq32uM1Hg
 
-{"email": "staff3@email.com",
-  "userType": "staff",
+{"email": "client2@email.com",
+  "userType": "CLIENT",
   "password": "password123",
-  "name": "test",
+  "firstName": "test",
+  "lastName": "test",
   "phone": "+79999999999",
-  "address": "address"}
+  "street": "street",
+  "buildingNumber": "211",
+  "zipCode": "4818CR",
+  "city": "Breda"
+}
 
 ###
-// GET USER INFO FROM JWT TOKEN (userType: all)
+// Get user info from userId inside JWT token (userType: CLIENT)
 GET http://localhost:8080/user/me
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6NSwiZXhwIjoxNjk3NzIzMjg2fQ.B1PgcH3gKNd3AkLK8qTANpmeGsMFEWAPcaX0mQUz5ns
 
 ###
-// DELETE USER (userType: STAFF)
-DELETE http://localhost:8080/user/1
+// Delete user (userType: STAFF)
+DELETE http://localhost:8080/user/7
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4MkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjozLCJleHAiOjE2OTcyMDUyNjZ9.MvI3hdIt3evMiHsyXh7uympxUuN-Jj14gl-4O4qpgBM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzcyMzI4Nn0.B3Z1ETklwUO6jWFDG778EHCH3eBAbSGoaHxZLA-ggs8
 
 ###
-// UPDATE USER (userType: STAFF)
+// Update user (userType: STAFF)
 PUT http://localhost:8080/user/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJhbGV4QGVtYWlsLmNvbSIsInVzZXJUeXBlIjoic3RhZmYiLCJ1c2VySWQiOjEsImV4cCI6MTY5Njk0NzA2OH0.RLKl1ketWrLhHPED5h0nBvCbaE6FQId9NR_oMFVvci8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
 
-{"email": "lex@email.com",
-  "userType": "staff",
+{"email": "client2@email.com",
+  "userType": "CLIENT",
   "password": "password123",
   "firstName": "firstName",
   "lastName": "lastName",
@@ -122,34 +151,34 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// GET USER BY ID (userType: STAFF)
+// Get user by userId (userType: STAFF)
 GET http://localhost:8080/user/1
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODgwODAvIiwiZW1haWwiOiJzdGFmZkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6InN0YWZmIiwidXNlcklkIjoxLCJleHAiOjE2OTY4NjAxODd9.nSGUxbZncvqHp74BFFQC_6UgWKkLBoDVRice52MOD00
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
 
 ###
-// GET ALL USERS (userType: STAFF)
+// Get all users (userType: STAFF)
 GET http://localhost:8080/user/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzY0OTA2N30.A3ddLU67cTA5UWlB29Pg-3561B1GVP1RItUwNt3UvUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcyMTMzMn0.5tC-aNjHs0wgAnk9Hk0jeiuGjqgdm2XCnesq32uM1Hg
 
 ###
-// AUTHENTICATE USER (no auth)
+// Authenticate a user (no auth)
 POST http://localhost:8080/user/signin
 Content-Type: application/json
 
 {
-  "email": "client2@email.com",
+  "email": "client4@email.com",
   "password": "StrongPassword1!"
 }
 
 ###
-// REGISTER USER (no auth)
+// Register a new user (no auth)
 POST http://localhost:8080/user/signup
 Content-Type: application/json
 
 {
-  "email": "client2@email.com",
+  "email": "client5@email.com",
   "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
