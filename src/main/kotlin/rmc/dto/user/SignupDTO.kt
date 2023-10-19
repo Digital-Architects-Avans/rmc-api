@@ -1,10 +1,9 @@
 package rmc.dto.user
 
-import rmc.error.WrongEmailFormat
-import rmc.error.WrongPasswordFormat
 import kotlinx.serialization.Serializable
 import org.mindrot.jbcrypt.BCrypt
 import rmc.db.dao.UserType
+import rmc.error.WrongFormat
 
 @Serializable
 data class SignupDTO (
@@ -30,8 +29,8 @@ data class SignupDTO (
         // - Minimum eight in length .{8,} (with the anchors)
         val passwordRegex = Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$")
 
-        if (!email.matches(emailRegex)) throw WrongEmailFormat()
-        if (!password.matches(passwordRegex)) throw WrongPasswordFormat()
+        if (!email.matches(emailRegex)) throw WrongFormat("Email")
+        if (!password.matches(passwordRegex)) throw WrongFormat("Password")
     }
 
 }
