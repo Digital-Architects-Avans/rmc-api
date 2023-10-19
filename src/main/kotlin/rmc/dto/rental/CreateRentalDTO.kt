@@ -1,14 +1,11 @@
 package rmc.dto.rental
 
 import kotlinx.serialization.Serializable
-import rmc.db.dao.RentalStatus
+import rmc.plugins.LocalDateSerializer
+import java.time.LocalDate
 
 @Serializable
 data class CreateRentalDTO(
-    val date: String,
-    val price: Float,
-    val location: String,
-    val status: RentalStatus,
-    val distanceTravelled: Float,
-    val score: Int
+    @Serializable(with = LocalDateSerializer::class)
+    val date: LocalDate
 )
