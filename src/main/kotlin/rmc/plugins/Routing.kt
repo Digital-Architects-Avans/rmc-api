@@ -23,7 +23,6 @@ fun Application.configureRouting() {
 fun PipelineContext<Unit, ApplicationCall>.currentUserId(): Int =
     call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asInt()
 
-fun PipelineContext<Unit, ApplicationCall>.authorize(requiredUserType: UserType, user: UserDTO): Unit {
-    if (user.userType != requiredUserType) throw MissingPermissionError(requiredUserType)
-}
+fun authorize(requiredUserType: UserType, user: UserDTO) =
+    if (user.userType != requiredUserType) throw MissingPermissionError(requiredUserType) else null
 
