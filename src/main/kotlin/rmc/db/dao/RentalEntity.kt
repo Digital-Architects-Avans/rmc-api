@@ -17,7 +17,8 @@ class RentalEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var date by RentalsTable.date
     var price by RentalsTable.price
-    var location by RentalsTable.location
+    var latitude by RentalsTable.latitude
+    var longitude by RentalsTable.longitude
     var status by RentalsTable.status
     var distanceTravelled by RentalsTable.distanceTravelled
     var score by RentalsTable.score
@@ -33,7 +34,8 @@ fun RentalEntity.toRentalDTO() = RentalDTO(
     this.userId.value,
     this.date,
     this.price,
-    this.location,
+    this.latitude,
+    this.longitude,
     this.status,
     this.distanceTravelled,
     this.score
