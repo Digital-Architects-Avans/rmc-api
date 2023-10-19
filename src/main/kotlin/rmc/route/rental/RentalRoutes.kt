@@ -6,16 +6,16 @@ import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import rmc.db.dao.RentalStatus
 import rmc.db.dao.UserType
 import rmc.dto.rental.CreateRentalDTO
 import rmc.dto.rental.UpdateRentalDTO
-import rmc.error.NotOwnerOfEntityWithId
-import rmc.error.StatusNotFound
-import rmc.error.WrongIdFormatException
+import rmc.error.*
 import rmc.plugins.authorize
 import rmc.plugins.currentUserId
 import rmc.repository.rental.RentalRepositoryImpl
 import rmc.repository.user.userRepository
+import rmc.repository.vehicle.vehicleRepository
 
 fun Route.rentalRoutes() {
     val rentalRepository = RentalRepositoryImpl()
@@ -66,12 +66,18 @@ fun Route.rentalRoutes() {
                     val createRentalDTO = call.receive<CreateRentalDTO>()
                     val vehicleId = call.parameters["vehicleId"]?.toInt() ?: throw WrongIdFormatException()
 
-                    TODO("Check if vehicle availability == true")
-//                    val vehicle = vehicleRepository.getVehicleById(vehicleId)
-//
-//                    if (vehicle.availability != true) throw vehicleNotAvailable()
-//                    val vehicle = rentalRepository.createRental(userId, vehicleId, createRentalDTO)
-//                    call.respond(vehicle)
+                    val vehicle = vehicleRepository.getVehicleById(vehicleId)
+
+                    // Check if vehicle availability is true
+                    if (!vehicle.availability) throw VehicleNotAvailable(vehicleId)
+
+                    // Check if vehicle has rentals, if true
+                    // Check if vehicle does not have an active rental for that date
+                    val rentals = rentalRepository.getRentalByVehicleId(vehicleId)
+                    if (rentals.any { it.date == createRentalDTO.date }) throw VehicleIsAlreadyRented(vehicleId, createRentalDTO.date)
+
+                    call.respond(rentalRepository.createRental(userId, vehicleId, createRentalDTO))
+
                 }
 
                 put("/{id}") {
@@ -96,17 +102,24 @@ fun Route.rentalRoutes() {
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.CLIENT, user)
 
-                    val id = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
-                    val status = call.request.queryParameters["status"]?.lowercase() ?: throw StatusNotFound()
+                    val rentalId = call.parameters["id"]?.toInt() ?: throw WrongIdFormatException()
+                    val inputStatus = call.request.queryParameters["status"]?.lowercase() ?: throw StatusNotFound()
+                    val enumStatus = RentalStatus.valueOf(inputStatus)
 
-                    TODO("Check if user is owner of rental (cancel) || owner of the vehicle in the rental (accept/deny)")
-//                    val rental = rentalRepository.getRentalById(id)
-//                    val vehicle = vehicleRepository.getVehicleById(rental.vehicleId)
-//                    if (userId != rental.userId || vehicle.userId) throw NotOwnerOfEntityWithId("rental", id)
-//
-//                    rentalRepository.updateRentalStatus(id, RentalStatus.valueOf(status))
-//                    val updatedRental = rentalRepository.getRentalById(id)
-//                    call.respond(updatedRental)
+                    val rental = rentalRepository.getRentalById(rentalId)
+                    val vehicle = vehicleRepository.getVehicleById(rental.vehicleId)
+
+                    // Check if user should be able to change rental to given status
+                    if (enumStatus == RentalStatus.APPROVED || enumStatus == RentalStatus.DENIED) {
+                        if (userId != vehicle.userId) throw NotOwnerOfEntityWithId("vehicle", vehicle.id)
+                    }
+                    if (enumStatus == RentalStatus.DENIED) {
+                        if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", rentalId)
+                    }
+
+                    rentalRepository.updateRentalStatus(rentalId, enumStatus)
+                    val updatedRental = rentalRepository.getRentalById(rentalId)
+                    call.respond(updatedRental)
                 }
 
                 delete("/{id}") {
