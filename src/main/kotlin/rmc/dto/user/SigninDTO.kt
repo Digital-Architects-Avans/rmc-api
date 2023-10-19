@@ -1,7 +1,7 @@
 package rmc.dto.user
 
 import kotlinx.serialization.Serializable
-import rmc.error.WrongEmailFormat
+import rmc.error.WrongFormat
 
 @Serializable
 data class SigninDTO (
@@ -10,6 +10,6 @@ data class SigninDTO (
 ) {
     fun validate() {
         val emailRegex = Regex(pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
-        if (!email.matches(emailRegex)) throw WrongEmailFormat()
+        if (!email.matches(emailRegex)) throw WrongFormat("Email")
     }
 }
