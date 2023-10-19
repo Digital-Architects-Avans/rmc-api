@@ -9,8 +9,10 @@ import rmc.dto.vehicle.VehicleId
 interface VehicleRepository {
     suspend fun createVehicle(userID: UserId, vehicle: CreateVehicleDTO): VehicleDTO
     suspend fun getAllVehicles(): List<VehicleDTO>
+    suspend fun getAllAvailableVehicles(): List<VehicleDTO>
     suspend fun getVehicleById(vehicleId: VehicleId): VehicleDTO
     suspend fun getVehiclesByUserId(userId: UserId): List<VehicleDTO>
     suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO)
+    suspend fun setVehicleAvailability(vehicleId: VehicleId, availability: Boolean)
     suspend fun deleteVehicle(vehicleId: VehicleId)
 }
