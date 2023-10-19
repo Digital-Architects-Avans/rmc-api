@@ -11,24 +11,22 @@ import rmc.db.dao.UserType
 import rmc.dto.vehicle.VehicleId
 import java.time.LocalDate
 
-open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"status":"$entity with id $id not found"}""")
-class InvalidEmailError : Exception("""{"status":"Invalid email"}""")
-class InvalidPasswordError : Exception("""{"status":"Invalid password"}""")
-class AuthenticationFailed : Exception("""{"status":"Authentication Failed"}""")
-class EmailAlreadyRegistered : Exception("""{"status":"Email already registered"}""")
-class VehicleAlreadyRegistered : Exception("""{"status":"Vehicle already registered"}""")
-class EmailUpdateAttemptError : Exception("""{"status":"Email update not allowed"}""")
-class WrongIdFormatException : Exception("""{"status":"Wrong ID format"}""")
-class WrongIdRangeException : Exception("""{"status":"Wrong ID range"}""")
-class WrongEmailFormat : Exception("""{"status":"Wrong email format"}""")
-class WrongPasswordFormat : Exception("""{"status":"Wrong password format"}""")
-class BearerStrangeError : Exception("""{"Authorization":"Bearer something.very.strange"}""")
-class WrongUserType : Exception("""{"status":"Access denied"}""")
-class MissingPermissionError(requiredUserType: UserType) : Exception("""{"status":"User is not $requiredUserType"}""")
-class NotOwnerOfEntityWithId(entity: String, id: Int) : Exception("""{"status":"You are not the owner of $entity with id $id"}""")
-class StatusNotFound : Exception("""{"status":"Status not found"}""")
-class VehicleNotAvailable(vehicleId: VehicleId) : Exception("""{"status":"Vehicle with id $vehicleId is not available"}""")
-class VehicleIsAlreadyRented(vehicleId: VehicleId, date: LocalDate) : Exception("""{"status":"Vehicle with id $vehicleId is already rented by another user on $date"}""")
+open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"Exception":"$entity with id $id not found"}""")
+class InvalidEmailError : Exception("""{"Exception":"Invalid email"}""")
+class InvalidPasswordError : Exception("""{"Exception":"Invalid password"}""")
+class AuthenticationFailed : Exception("""{"Exception":"Authentication Failed"}""")
+class EmailAlreadyRegistered : Exception("""{"Exception":"Email already registered"}""")
+class VehicleAlreadyRegistered : Exception("""{"Exception":"Vehicle already registered"}""")
+class EmailUpdateAttemptError : Exception("""{"Exception":"Email update not allowed"}""")
+class WrongFormat(type: String) : Exception("""{"Exception":"Wrong $type format"}""")
+class WrongIdRangeException : Exception("""{"Exception":"Wrong ID range"}""")
+class WrongUserType : Exception("""{"Exception":"Access denied"}""")
+class MissingPermissionError(requiredUserType: UserType) : Exception("""{"Exception":"User is not $requiredUserType"}""")
+class NotOwnerOfEntityWithId(entity: String, id: Int) : Exception("""{"Exception":"You are not the owner of $entity with id $id"}""")
+class StatusNotFound : Exception("""{"Exception":"Status not found"}""")
+class VehicleNotAvailable(vehicleId: VehicleId) : Exception("""{"Exception":"Vehicle with id $vehicleId is not available"}""")
+class VehicleIsAlreadyRented(vehicleId: VehicleId, date: LocalDate) : Exception("""{"Exception":"Vehicle with id $vehicleId is already rented by another user on $date"}""")
+class NoRentalsForUserFound() : Exception("""{"Exception":"No rentals for this user found"}""")
 
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -55,17 +53,11 @@ fun Application.configureStatusPages() {
         exception<EmailUpdateAttemptError> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
-        exception<WrongIdFormatException> { call, cause ->
+        exception<WrongFormat> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.BadRequest)
         }
         exception<WrongIdRangeException> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.BadRequest)
-        }
-        exception<WrongPasswordFormat> { call, cause ->
-            call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.BadRequest)
-        }
-        exception<BearerStrangeError> { call, cause ->
-            call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Unauthorized)
         }
         exception<WrongUserType> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
@@ -94,6 +86,9 @@ fun Application.configureStatusPages() {
         }
         exception<VehicleIsAlreadyRented> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
+        }
+        exception<NoRentalsForUserFound> { call, cause ->
+            call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.NotFound)
         }
     }
 }
