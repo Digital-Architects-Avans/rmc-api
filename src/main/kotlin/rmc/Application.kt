@@ -20,8 +20,6 @@ fun Application.module(testing: Boolean = false) {
     DatabaseFactory.init(environment.config)
 }
 
-//    TODO("COMMIT MASTER")
-//    TODO("FINALISE INTEGRATION TESTS")
 //    TODO("TEST HTTP ENDPONTS")
 //    TODO("VALIDATE USER INPUT DTOS?")
 //    TODO("SEPARATE USER AND USERPROFILE ROUTES")
