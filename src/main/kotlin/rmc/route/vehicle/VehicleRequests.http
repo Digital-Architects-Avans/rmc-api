@@ -1,10 +1,10 @@
 // HTTP Requests for VehicleRoutes.kt
 
 ###
-// CREATE A VEHICLE (with auth)
+// 10. Create a vehicle (userType: CLIENT)
 POST http://localhost:8080/vehicle/createVehicle
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgyMTY5OH0.eCPNn2Yl21e-8AE8YzqrskScqe6MLRDhRmTXiwKuvvk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImZpYXRvd25lckBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MjUsImV4cCI6MTY5NzgzNzY4NH0.BvCfDBCcqejdi_wkRpDMAPEd5B5AFIlwBEX3XBxMvJc
 
 {
   "brand": "Tesla",
@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "year": 2023,
   "vehicleClass": "Test",
   "engineType": "BEV",
-  "licensePlate": "04-ALF-18",
+  "licensePlate": "04-ALF-55",
   "imgLink": "https://www.google.com",
   "latitude": 51.571915,
   "longitude": 4.768323,
@@ -21,59 +21,60 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// GET ALL VEHICLES (Client)
-GET http://localhost:8080/vehicle/all
+// 11. Get vehicle by ID (userType: CLIENT)
+GET http://localhost:8080/vehicle/3
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjE5LCJleHAiOjE2OTc4MzQyNDJ9.yLE0BuivNgexNWc2B9SYOEMWkXwlx5M1WJHWqkKNR0s
+
 
 ###
-// UPDATE VEHCILES BY ID with auth
-PUT http://localhost:8080/vehicle/4
+// 12. Get all vehicles (userType: STAFF)
+GET http://localhost:8080/vehicle/all
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNzY4NH0.OUlVHzhqryPw6_IPE4tUjtr-FAYcMa6YoRMgQp47VK8
+
+###
+// 13. Get all available vehicles (userType: CLIENT)
+GET http://localhost:8080/vehicle/allAvailable
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNzY4NH0.OUlVHzhqryPw6_IPE4tUjtr-FAYcMa6YoRMgQp47VK8
+
+###
+// 14. Get vehicles by userId from JWT token (userType: CLIENT)
+GET http://localhost:8080/vehicle/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDMyQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoyMCwiZXhwIjoxNjk3ODM0MjQyfQ.oWhNXH013ZdnkkbIpJJ2JFZmGEzcPyo4Rjs76rbkW5o
+
+###
+// 15. Update vehicles by ID (userType: CLIENT)
+PUT http://localhost:8080/vehicle/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgxNDU5M30.8DYSJuaPwgoqkVjEn4kFwFEbSvVo_3xKg_XW6UA5SFo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDMyQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoyMCwiZXhwIjoxNjk3ODM0MjQyfQ.oWhNXH013ZdnkkbIpJJ2JFZmGEzcPyo4Rjs76rbkW5o
 
 {
-  "userId": 12,
-  "brand": "super alice Toyota",
+  "brand": "Toyota",
   "model": "Camry",
   "year": 2022,
   "vehicleClass": "Sedan",
   "engineType": "ICE",
   "licensePlate": "AB-C1-30",
   "imgLink": "car-image.jpg",
-  "latitude": 51.559520251527005,
-  "longitude": 4.661058457551144,
+  "latitude": 51.559520,
+  "longitude": 4.661058,
   "price": 250.0,
   "availability": true
 }
 
 ###
-// DELETE OWN VEHICLE (Client)
-DELETE http://localhost:8080/vehicle/9
+// 16. Set vehicle availability (userType: CLIENT)
+PUT http://localhost:8080/vehicle/setAvailability/3/true
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjksImV4cCI6MTY5NzcyMzI4Nn0.qNLbILPPB2EMftDV7lag8o4k8GKwS8q_cxCDlHyqud0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIxLCJleHAiOjE2OTc4MzU1MDB9.kJrSLzD3NyvKumSJ_Jti1WH-XGysT-On6EEoWDi27w8
 
 
 ###
-// GET VEHCILE BY ID (STAFF and CLIENT only with auth)
-GET http://localhost:8080/vehicle/2
+// 17. Delete own vehicle (userType: CLIENT)
+DELETE http://localhost:8080/vehicle/3
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3NjY1MjgzfQ.5cw1MAmTNDplg-TOUJWPU8HQ8_6zBooB1My3_s4q23Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5Nzg0MTM3NX0.p3k-79xzggMqE6VCwQ718UljAe2BmVj3POx2usbJ7iM
 
-###
-// Set vehicle availability (STAFF and CLIENT only with auth)
-PUT http://localhost:8080/vehicle/setAvailability/7/true
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
-
-###
-// GET ALL AVAILABLE VEHICLES (STAFF and CLIENT only with auth)
-GET http://localhost:8080/vehicle/allAvailable
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
-
-###
-// GET VEHCILES BY USER ID FROM JWT
-GET http://localhost:8080/vehicle/user
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzcyMzI4Nn0.I2neXUImh89jYcRPmCNWERAWK7lUW2inLjSc-T9JtLs
