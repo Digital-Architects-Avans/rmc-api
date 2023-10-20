@@ -1,4 +1,4 @@
-![rmc-logo](/resouces/rmc-logo.png)
+![rmc-logo](src/main/resources/images/rmc-logo.png)
 
 # Rent My Car - REST API
 
