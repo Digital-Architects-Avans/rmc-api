@@ -14,6 +14,7 @@ import rmc.dto.vehicle.UpdateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO
 import rmc.dto.vehicle.VehicleId
 import rmc.error.EntityWithIdNotFound
+import rmc.error.NoVehiclesForUserFound
 import rmc.error.VehicleAlreadyRegistered
 
 class VehicleRepositoryImpl : VehicleRepository {
@@ -54,12 +55,12 @@ class VehicleRepositoryImpl : VehicleRepository {
         }.filter { it.availability }
     }
 
-    override suspend fun getVehiclesByUserId(userId: VehicleId): List<VehicleDTO> {
+    override suspend fun getVehiclesByUserId(userId: UserId): List<VehicleDTO> {
         val vehicleEntities = dbQuery {
             VehicleEntity.find(VehiclesTable.userId eq userId).toList()
         }
 
-        if (vehicleEntities.isEmpty()) throw EntityWithIdNotFound("vehicle", userId)
+        if (vehicleEntities.isEmpty()) throw NoVehiclesForUserFound(userId)
         return vehicleEntities.map { it.toVehicleDTO() }
     }
 
