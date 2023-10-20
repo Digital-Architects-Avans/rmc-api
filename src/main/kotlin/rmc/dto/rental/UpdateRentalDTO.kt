@@ -13,12 +13,12 @@ data class UpdateRentalDTO (
     val userId: Int,
     @Serializable(with = LocalDateSerializer::class)
     val date: LocalDate,
-    val price: Float,
+    val price: Double,
     @Serializable(with = BigDecimalSerializer::class)
     val latitude: BigDecimal,
     @Serializable(with = BigDecimalSerializer::class)
     val longitude: BigDecimal,
     val status: RentalStatus,
-    val distanceTravelled: Float,
+    val distanceTravelled: Double,
     val score: Int
 )
