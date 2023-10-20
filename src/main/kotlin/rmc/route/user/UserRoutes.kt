@@ -1,10 +1,8 @@
 package rmc.route.user
 
-import com.typesafe.config.ConfigFactory
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
-import io.ktor.server.config.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -19,11 +17,10 @@ import rmc.error.*
 import rmc.plugins.authorize
 import rmc.plugins.currentUserId
 import rmc.repository.user.userRepository
-import rmc.utils.TokenManager
+import rmc.utils.tokenManager
 
 
 fun Route.userRoutes() {
-    val tokenManager = TokenManager(HoconApplicationConfig(ConfigFactory.load()))
 
     route("/user") {
         rateLimit {
@@ -35,11 +32,12 @@ fun Route.userRoutes() {
                     val token = tokenManager.generateJWTToken(newUser)
 
                     call.response.header("Authorization", token)
-                    call.respondText(Json.encodeToString(mapOf("token" to token)), status = HttpStatusCode.Created)
+                    call.respondText(Json.encodeToString(newUser), status = HttpStatusCode.Created)
                 } catch (e: Exception) {
                     throw EmailAlreadyRegistered()
                 }
             }
+
             post("/signin") {
                 val signInDTO = call.receive<SigninDTO>()
 
@@ -48,7 +46,10 @@ fun Route.userRoutes() {
                     val token = tokenManager.generateJWTToken(authenticatedUser)
 
                     call.response.header("Authorization", token)
-                    call.respondText(Json.encodeToString(mapOf("token" to token)), status = HttpStatusCode.OK)
+                    call.respondText(
+                        "Welcome, ${authenticatedUser.email}, you have been successfully logged in.",
+                        status = HttpStatusCode.OK
+                    )
                 } catch (e: Exception) {
                     throw AuthenticationFailed()
                 }
