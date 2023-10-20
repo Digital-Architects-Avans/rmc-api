@@ -22,6 +22,6 @@ data class VehicleDTO (
     val latitude: BigDecimal,
     @Serializable(with = BigDecimalSerializer::class)
     val longitude: BigDecimal,
-    val price: Float,
+    val price: Double,
     val availability: Boolean
 )
