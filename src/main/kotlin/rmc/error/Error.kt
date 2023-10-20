@@ -8,6 +8,7 @@ import io.ktor.server.response.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import rmc.db.dao.UserType
+import rmc.dto.user.UserId
 import rmc.dto.vehicle.VehicleId
 import java.time.LocalDate
 
@@ -26,7 +27,8 @@ class NotOwnerOfEntityWithId(entity: String, id: Int) : Exception("""{"Exception
 class StatusNotFound : Exception("""{"Exception":"Status not found"}""")
 class VehicleNotAvailable(vehicleId: VehicleId) : Exception("""{"Exception":"Vehicle with id $vehicleId is not available"}""")
 class VehicleIsAlreadyRented(vehicleId: VehicleId, date: LocalDate) : Exception("""{"Exception":"Vehicle with id $vehicleId is already rented by another user on $date"}""")
-class NoRentalsForUserFound() : Exception("""{"Exception":"No rentals for this user found"}""")
+class NoRentalsForUserFound(userId: UserId) : Exception("""{"Exception":"No rentals for user with $userId found"}""")
+class NoVehiclesForUserFound(userId: UserId) : Exception("""{"Exception":"No vehicles for user with $userId found"}""")
 
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -88,6 +90,9 @@ fun Application.configureStatusPages() {
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.Forbidden)
         }
         exception<NoRentalsForUserFound> { call, cause ->
+            call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.NotFound)
+        }
+        exception<NoVehiclesForUserFound> { call, cause ->
             call.respondText(cause.message!!, ContentType.Application.Json, HttpStatusCode.NotFound)
         }
     }
