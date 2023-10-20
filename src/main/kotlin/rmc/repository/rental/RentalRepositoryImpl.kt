@@ -79,3 +79,4 @@ class RentalRepositoryImpl : RentalRepository {
         UserEntity.findById(rentalId)?.delete() ?: throw EntityWithIdNotFound("Rental", rentalId)
     }
 }
+val rentalRepository: RentalRepository = RentalRepositoryImpl()
