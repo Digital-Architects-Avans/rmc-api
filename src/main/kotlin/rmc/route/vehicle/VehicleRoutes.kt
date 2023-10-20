@@ -1,10 +1,13 @@
 package rmc.route.vehicle
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import rmc.db.dao.UserType
 import rmc.dto.vehicle.CreateVehicleDTO
 import rmc.dto.vehicle.UpdateVehicleDTO
@@ -28,7 +31,7 @@ fun Route.vehicleRoutes() {
                 val createVehicleDTO = call.receive<CreateVehicleDTO>()
 
                 val vehicle = vehicleRepository.createVehicle(userId, createVehicleDTO)
-                call.respond(vehicle)
+                call.respondText(Json.encodeToString(vehicle), status = HttpStatusCode.Created)
             }
 
             get("/{id}") {
