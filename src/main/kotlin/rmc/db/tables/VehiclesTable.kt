@@ -15,7 +15,7 @@ object VehiclesTable : IntIdTable() {
     val imgLink = varchar("imgLink", 100).default("")
     val latitude = decimal("latitude", 8, 6)
     val longitude = decimal("longitude", 9, 6)
-    val price = float("price").default(0.0F)
+    val price = double("price").default(0.00)
     val availability = bool("availability").default(true)
 
     init {
