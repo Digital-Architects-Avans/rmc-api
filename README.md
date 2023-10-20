@@ -1,6 +1,6 @@
-# Project Name
+# Rent My Car - REST API
 
-Brief project description and purpose.
+A Kotlin REST API with the Ktor & Exposed frameworks.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Brief project description and purpose.
 
 ## Introduction
 
-Provide a concise introduction to your Ktor web API. Explain its purpose and what it does in a few sentences.
+Our project is a modern and user-friendly mobile application built using the Ktor framework with the Exposed DAO API for seamless data persistence. Designed to serve the needs of people seeking quick and hassle-free car rental services, as well as those who wish to make their vehicles available for rent, this Android app employs the power of Jetpack Compose for an elegant and intuitive user interface.
 
 ## Endpoints
 
