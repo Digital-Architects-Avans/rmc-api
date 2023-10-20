@@ -56,7 +56,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testImplementation("io.ktor:ktor-client-content-negotiation:2.2.4")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
 
 
 }
