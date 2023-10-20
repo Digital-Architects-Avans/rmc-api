@@ -1,11 +1,14 @@
 package rmc.route.rental
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import rmc.db.dao.RentalStatus
 import rmc.db.dao.UserType
 import rmc.dto.rental.CreateRentalDTO
@@ -76,8 +79,8 @@ fun Route.rentalRoutes() {
                     val rentals = rentalRepository.getRentalByVehicleId(vehicleId)
                     if (rentals.any { it.date == createRentalDTO.date }) throw VehicleIsAlreadyRented(vehicleId, createRentalDTO.date)
 
-                    call.respond(rentalRepository.createRental(userId, vehicleId, createRentalDTO))
-
+                    val rental = rentalRepository.createRental(userId, vehicleId, createRentalDTO)
+                    call.respondText(Json.encodeToString(rental), status = HttpStatusCode.Created)
                 }
 
                 put("/{id}") {
