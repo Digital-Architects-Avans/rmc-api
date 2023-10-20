@@ -1,44 +1,44 @@
 // HTTP Requests for UserRoutes.kt
 
-// Register a new user (no auth)
+// 1. Register a new user (no auth)
 POST http://localhost:8080/user/signup
 Content-Type: application/json
 
 {
-  "email": "client5@email.com",
+  "email": "fiatrenter@email.com",
   "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
 
 ###
-// Authenticate a user (no auth)
+// 2. Authenticate a user (no auth)
 POST http://localhost:8080/user/signin
 Content-Type: application/json
 
 {
-  "email": "client5@email.com",
+  "email": "staff@email.com",
   "password": "StrongPassword1!"
 }
 
 ###
-// Get all users (userType: STAFF)
+// 3. Get all users (userType: STAFF)
 GET http://localhost:8080/user/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzgxOTM3OH0.mV0-KjqyG6S3YNxM8nZXtuIKwRuPQohd0Z2gKo8Fnvo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzMDQ0OX0.dNjHtEHl3grXRIi9MlyIuOiFnbQPmg-zTsoTLEwISWo
 
 ###
-// Get user by userId (userType: STAFF)
-GET http://localhost:8080/user/1
+// 4. Get user by userId (userType: STAFF)
+GET http://localhost:8080/user/18
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
 
 ###
-// Update user (userType: STAFF)
+// 5. Update user (userType: STAFF)
 PUT http://localhost:8080/user/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
 
-{"email": "client2@email.com",
+{"email": "1697826772176@email.com",
   "userType": "CLIENT",
   "password": "password123",
   "firstName": "firstName",
@@ -51,24 +51,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// Delete user (userType: STAFF)
+// 6. Delete user (userType: STAFF)
 DELETE http://localhost:8080/user/7
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzcyMzI4Nn0.B3Z1ETklwUO6jWFDG778EHCH3eBAbSGoaHxZLA-ggs8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
 
 ###
-// Get user info from userId inside JWT token (userType: CLIENT)
+// 7. Get user info from userId inside JWT token (userType: CLIENT)
 GET http://localhost:8080/user/me
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6NSwiZXhwIjoxNjk3NzIzMjg2fQ.B1PgcH3gKNd3AkLK8qTANpmeGsMFEWAPcaX0mQUz5ns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
 ###
-// Update user from userId in JWT token (userType: CLIENT)
+// 8. Update user from userId in JWT token (userType: CLIENT)
 PUT http://localhost:8080/user/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcyMTMzMn0.5tC-aNjHs0wgAnk9Hk0jeiuGjqgdm2XCnesq32uM1Hg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
-{"email": "client2@email.com",
+{"email": "client@email.com",
   "userType": "CLIENT",
   "password": "password123",
   "firstName": "test",
@@ -81,10 +81,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 }
 
 ###
-// DELETE USER FROM JWT TOKEN (userType: all)
+// 9. Delete user with userId from JWT token (userType: CLIENT)
 DELETE http://localhost:8080/user/me
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
 
 
