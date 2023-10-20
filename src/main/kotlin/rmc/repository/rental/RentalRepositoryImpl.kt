@@ -28,7 +28,7 @@ class RentalRepositoryImpl : RentalRepository {
     override suspend fun getRentalByUserId(userId: UserId): List<RentalDTO> = dbQuery {
         RentalEntity.find { RentalsTable.userId eq userId }
             .map { it.toRentalDTO() }
-            .takeIf { it.isNotEmpty() } ?: throw NoRentalsForUserFound()
+            .takeIf { it.isNotEmpty() } ?: throw NoRentalsForUserFound(userId)
     }
 
     override suspend fun getRentalByVehicleId(vehicleId: VehicleId): List<RentalDTO> = dbQuery {
@@ -76,7 +76,7 @@ class RentalRepositoryImpl : RentalRepository {
     }
 
     override suspend fun deleteRental(rentalId: RentalId) = dbQuery {
-        UserEntity.findById(rentalId)?.delete() ?: throw EntityWithIdNotFound("Rental", rentalId)
+        RentalEntity.findById(rentalId)?.delete() ?: throw EntityWithIdNotFound("Rental", rentalId)
     }
 }
 val rentalRepository: RentalRepository = RentalRepositoryImpl()
