@@ -7,7 +7,6 @@ import java.math.BigDecimal
 
 @Serializable
 data class UpdateVehicleDTO(
-    val userId: Int,
     val brand: String,
     val model: String,
     val year: Int,
