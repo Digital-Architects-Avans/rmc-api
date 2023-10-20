@@ -7,8 +7,8 @@ A Kotlin REST API with the Ktor & Exposed frameworks.
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Endpoints](#endpoints)
 - [Getting Started](#getting-started)
+- [Endpoints](#endpoints)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
