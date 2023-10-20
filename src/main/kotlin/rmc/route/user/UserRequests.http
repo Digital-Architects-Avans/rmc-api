@@ -1,0 +1,96 @@
+// HTTP Requests for UserRoutes.kt
+
+// Register a new user (no auth)
+POST http://localhost:8080/user/signup
+Content-Type: application/json
+
+{
+  "email": "client5@email.com",
+  "userType": "CLIENT",
+  "password": "StrongPassword1!"
+}
+
+###
+// Authenticate a user (no auth)
+POST http://localhost:8080/user/signin
+Content-Type: application/json
+
+{
+  "email": "client5@email.com",
+  "password": "StrongPassword1!"
+}
+
+###
+// Get all users (userType: STAFF)
+GET http://localhost:8080/user/users
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzgxOTM3OH0.mV0-KjqyG6S3YNxM8nZXtuIKwRuPQohd0Z2gKo8Fnvo
+
+###
+// Get user by userId (userType: STAFF)
+GET http://localhost:8080/user/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
+
+###
+// Update user (userType: STAFF)
+PUT http://localhost:8080/user/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzcyMTMzMn0.AzUL1BsdgqqnDo-IFkQB-t6lqmumlJp62htQH_MVhFQ
+
+{"email": "client2@email.com",
+  "userType": "CLIENT",
+  "password": "password123",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "phone": "+79999999999",
+  "street": "address",
+  "buildingNumber": "1",
+  "zipCode": "4818CR",
+  "city": "Breda"
+}
+
+###
+// Delete user (userType: STAFF)
+DELETE http://localhost:8080/user/7
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzcyMzI4Nn0.B3Z1ETklwUO6jWFDG778EHCH3eBAbSGoaHxZLA-ggs8
+
+###
+// Get user info from userId inside JWT token (userType: CLIENT)
+GET http://localhost:8080/user/me
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6NSwiZXhwIjoxNjk3NzIzMjg2fQ.B1PgcH3gKNd3AkLK8qTANpmeGsMFEWAPcaX0mQUz5ns
+
+###
+// Update user from userId in JWT token (userType: CLIENT)
+PUT http://localhost:8080/user/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjEsImV4cCI6MTY5NzcyMTMzMn0.5tC-aNjHs0wgAnk9Hk0jeiuGjqgdm2XCnesq32uM1Hg
+
+{"email": "client2@email.com",
+  "userType": "CLIENT",
+  "password": "password123",
+  "firstName": "test",
+  "lastName": "test",
+  "phone": "+79999999999",
+  "street": "street",
+  "buildingNumber": "211",
+  "zipCode": "4818CR",
+  "city": "Breda"
+}
+
+###
+// DELETE USER FROM JWT TOKEN (userType: all)
+DELETE http://localhost:8080/user/me
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
+
+
+
+
+
+
+
+
+

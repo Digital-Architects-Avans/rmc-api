@@ -1,0 +1,24 @@
+// HTTP Requests for RenalRoutes.kt
+
+###
+// CREATE A RENTAL WITH {VEHICLEID} (userType: STAFF)
+POST http://localhost:8080/rental/createRental/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgyMTY5OH0.eCPNn2Yl21e-8AE8YzqrskScqe6MLRDhRmTXiwKuvvk
+
+{
+  "date": "2023-11-19"
+}
+
+###
+
+// GET ALL RENTALS (STAFF)
+GET http://localhost:8080/rental/allRentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgxNDU5M30.8DYSJuaPwgoqkVjEn4kFwFEbSvVo_3xKg_XW6UA5SFo
+
+###
+// GET RENTALS FROM USERID FROM JWT TOKEN
+GET http://localhost:8080/rental/rentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDRAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjgsImV4cCI6MTY5NzcyMzI4Nn0.396ATjnoQ30pupIOZ6K1o1eGuBMNKwMpcGvQ8xlHDes

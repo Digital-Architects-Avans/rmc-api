@@ -1,0 +1,79 @@
+// HTTP Requests for VehicleRoutes.kt
+
+###
+// CREATE A VEHICLE (with auth)
+POST http://localhost:8080/vehicle/createVehicle
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgyMTY5OH0.eCPNn2Yl21e-8AE8YzqrskScqe6MLRDhRmTXiwKuvvk
+
+{
+  "brand": "Tesla",
+  "model": "Model S",
+  "year": 2023,
+  "vehicleClass": "Test",
+  "engineType": "BEV",
+  "licensePlate": "04-ALF-18",
+  "imgLink": "https://www.google.com",
+  "latitude": 51.571915,
+  "longitude": 4.768323,
+  "price": 250.00,
+  "availability": true
+}
+
+###
+// GET ALL VEHICLES (Client)
+GET http://localhost:8080/vehicle/all
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
+
+###
+// UPDATE VEHCILES BY ID with auth
+PUT http://localhost:8080/vehicle/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzgxNDU5M30.8DYSJuaPwgoqkVjEn4kFwFEbSvVo_3xKg_XW6UA5SFo
+
+{
+  "userId": 12,
+  "brand": "super alice Toyota",
+  "model": "Camry",
+  "year": 2022,
+  "vehicleClass": "Sedan",
+  "engineType": "ICE",
+  "licensePlate": "AB-C1-30",
+  "imgLink": "car-image.jpg",
+  "latitude": 51.559520251527005,
+  "longitude": 4.661058457551144,
+  "price": 250.0,
+  "availability": true
+}
+
+###
+// DELETE OWN VEHICLE (Client)
+DELETE http://localhost:8080/vehicle/9
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDVAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjksImV4cCI6MTY5NzcyMzI4Nn0.qNLbILPPB2EMftDV7lag8o4k8GKwS8q_cxCDlHyqud0
+
+
+###
+// GET VEHCILE BY ID (STAFF and CLIENT only with auth)
+GET http://localhost:8080/vehicle/2
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3NjY1MjgzfQ.5cw1MAmTNDplg-TOUJWPU8HQ8_6zBooB1My3_s4q23Y
+
+###
+// Set vehicle availability (STAFF and CLIENT only with auth)
+PUT http://localhost:8080/vehicle/setAvailability/7/true
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjcsImV4cCI6MTY5NzcyMzI4Nn0.S4pjCk4G4R2TgcKhhtV3wbXtaky_TXr-zTwX0MO9q7A
+
+###
+// GET ALL AVAILABLE VEHICLES (STAFF and CLIENT only with auth)
+GET http://localhost:8080/vehicle/allAvailable
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjYsImV4cCI6MTY5NzcyMzI4Nn0.On96huWPPLcAMlqNgJX-XhZncAqu2BEiFrwJiVGMajE
+
+###
+// GET VEHCILES BY USER ID FROM JWT
+GET http://localhost:8080/vehicle/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzcyMzI4Nn0.I2neXUImh89jYcRPmCNWERAWK7lUW2inLjSc-T9JtLs
