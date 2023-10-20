@@ -32,7 +32,7 @@ class IntegrationTests {
 
     private val userCredentials = SignupDTO(
         "$time@email.com",
-        UserType.OTHER,
+        UserType.CLIENT,
         "StrongPassword$time!"
     )
 
@@ -48,6 +48,8 @@ class IntegrationTests {
         "1234AB",
         "Breda"
     )
+
+    private val token = tokenManager.generateJWTToken(testUser)
 
     private val testVehicle = CreateVehicleDTO(
         "Tesla",
@@ -91,7 +93,7 @@ class IntegrationTests {
     - Test if HttpStatusCode.Created is returned
     - Test if returned user equals the user stored in the database */
     @Test
-    fun testPostUserSignup() = testApplication {
+    fun `sign user up`() = testApplication {
         val client = createClient {
             install(ContentNegotiation) {
                 json()
@@ -106,21 +108,21 @@ class IntegrationTests {
 
         val authorizationHeader = response.headers["Authorization"]
         val returnedToken =
-            authorizationHeader?.substringAfter("Bearer ") ?: fail("No token returned in the Authorization header")
-
-        val userFromResponse = Json.decodeFromString<UserDTO>(response.bodyAsText())
-        val userFromDb = userRepository.getUserById(userFromResponse.id)
+            authorizationHeader?.substringAfter("Bearer $token")
+                ?: fail("No token returned in the Authorization header")
+        val returnedUser = Json.decodeFromString<UserDTO>(response.bodyAsText())
+        val userFromDb = userRepository.getUserById(returnedUser.id)
 
         assert(returnedToken.matches(jwtRegex))
         assertEquals(HttpStatusCode.Created, response.status)
-        assertEquals(userFromDb, userFromResponse)
+        assertEquals(userFromDb, returnedUser)
     }
 
     /* IT-002 Integration Test Testcase: Endpoint /vehicle/createVehicle
     // Test if HttpStatusCode.Created is returned
     // Test if vehicle returned equals vehicle stored in the database */
     @Test
-    fun testPostVehicleCreateVehicle() = testApplication {
+    fun `create vehicle for user from JWT`() = testApplication {
         val client = createClient {
             install(ContentNegotiation) {
                 json()
@@ -129,10 +131,9 @@ class IntegrationTests {
 
         val response = client.post("/vehicle/createVehicle") {
             setBody(Json.encodeToString(testVehicle))
-            val authHeader = "Bearer ${tokenManager.generateJWTToken(testUser)}"
+            val authHeader = "Bearer $token"
             header(HttpHeaders.Authorization, authHeader)
             header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-
         }
 
         val vehicleFromResponse = Json.decodeFromString<VehicleDTO>(response.bodyAsText())
@@ -140,14 +141,13 @@ class IntegrationTests {
 
         assertEquals(HttpStatusCode.Created, response.status)
         assertEquals(vehicleFromDb, vehicleFromResponse)
-
     }
 
     /* IT-003 Integration Test Testcase: Endpoint /rental/createRental
     // Test if HttpStatusCode.Created is returned
     // Test if rental returned equals the rental stored in the database */
     @Test
-    fun testPostRentalCreateRental() = testApplication {
+    fun `create rental for vehicle for user from JWT`() = testApplication {
         val client = createClient {
             install(ContentNegotiation) {
                 json()
@@ -156,7 +156,7 @@ class IntegrationTests {
 
         val response = client.post("/rental/createRental/1") {
             setBody(Json.encodeToString(testRental))
-            val authHeader = "Bearer ${tokenManager.generateJWTToken(testUser)}"
+            val authHeader = "Bearer $token"
             header(HttpHeaders.Authorization, authHeader)
             header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         }
