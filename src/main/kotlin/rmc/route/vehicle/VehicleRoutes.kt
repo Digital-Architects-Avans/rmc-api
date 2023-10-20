@@ -44,15 +44,6 @@ fun Route.vehicleRoutes() {
                 found.let { call.respond(it) }
             }
 
-            get("/all") {
-                val userId = currentUserId()
-                val user = userRepository.getUserById(userId)
-                authorize(UserType.CLIENT, user)
-
-                val vehicles = vehicleRepository.getAllVehicles()
-                call.respond(vehicles)
-            }
-
             get("/allAvailable") {
                 val userId = currentUserId()
                 val user = userRepository.getUserById(userId)
@@ -118,6 +109,15 @@ fun Route.vehicleRoutes() {
                 // Cancel all rentals with this vehicleId
 
                 call.respond(vehicleRepository.deleteVehicle(vehicleId))
+            }
+
+            get("/all") {
+                val userId = currentUserId()
+                val user = userRepository.getUserById(userId)
+                authorize(UserType.STAFF, user)
+
+                val vehicles = vehicleRepository.getAllVehicles()
+                call.respond(vehicles)
             }
         }
     }
