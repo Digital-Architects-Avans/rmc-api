@@ -49,7 +49,7 @@ fun Route.rentalRoutes() {
                     found.let { call.respond(it) }
                 }
 
-                get("/vehicle/{id}") {
+                get("/rentedVehicle/{id}") {
                     val userId = currentUserId()
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.CLIENT, user)
@@ -58,6 +58,21 @@ fun Route.rentalRoutes() {
 
                     // Filter results to rentals matched to the userId of client
                     val found = rentalRepository.getRentalByVehicleId(id).filter { it.userId == userId }
+                    found.let { call.respond(it) }
+                }
+
+                get("/ownedVehicle/{id}") {
+                    val userId = currentUserId()
+                    val user = userRepository.getUserById(userId)
+                    authorize(UserType.CLIENT, user)
+
+                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
+
+                    // Filter results to rentals matched to the userId of client
+                    val found = rentalRepository.getRentalByVehicleId(id)
+                    val vehicle = vehicleRepository.getVehicleById(id)
+                    if (userId != vehicle.userId) throw NotOwnerOfEntityWithId("vehicle", id)
+
                     found.let { call.respond(it) }
                 }
 
@@ -83,30 +98,13 @@ fun Route.rentalRoutes() {
                     call.respondText(Json.encodeToString(rental), status = HttpStatusCode.Created)
                 }
 
-                put("/{id}") {
+                get("/status/{id}") {
                     val userId = currentUserId()
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.CLIENT, user)
 
-                    val updateRentalDTO = call.receive<UpdateRentalDTO>()
-
-                    // Check if user is owner of rental
-                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
-                    val rental = rentalRepository.getRentalById(id)
-                    if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", id)
-
-                    rentalRepository.updateRental(id, updateRentalDTO)
-                    val updatedRental = rentalRepository.getRentalById(id)
-                    call.respond(updatedRental)
-                }
-
-                put("/{id}/{status}") {
-                    val userId = currentUserId()
-                    val user = userRepository.getUserById(userId)
-                    authorize(UserType.CLIENT, user)
-
-                    val rentalId = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
-                    val inputStatus = call.request.queryParameters["status"]?.lowercase() ?: throw StatusNotFound()
+                    val rentalId = call.parameters["id"]?.toInt() ?: throw WrongFormat("id")
+                    val inputStatus = call.request.queryParameters["status"]?.uppercase() ?: throw StatusNotFound()
                     val enumStatus = RentalStatus.valueOf(inputStatus)
 
                     val rental = rentalRepository.getRentalById(rentalId)
@@ -116,11 +114,12 @@ fun Route.rentalRoutes() {
                     if (enumStatus == RentalStatus.APPROVED || enumStatus == RentalStatus.DENIED) {
                         if (userId != vehicle.userId) throw NotOwnerOfEntityWithId("vehicle", vehicle.id)
                     }
-                    if (enumStatus == RentalStatus.DENIED) {
+                    if (enumStatus == RentalStatus.CANCELLED) {
                         if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", rentalId)
                     }
 
                     rentalRepository.updateRentalStatus(rentalId, enumStatus)
+                    println(enumStatus)
                     val updatedRental = rentalRepository.getRentalById(rentalId)
                     call.respond(updatedRental)
                 }
@@ -132,7 +131,7 @@ fun Route.rentalRoutes() {
                     authorize(UserType.CLIENT, user)
 
                     // Check if user is owner of rental
-                    val id = call.parameters["id"]?.toInt() ?: throw throw WrongFormat("id")
+                    val id = call.parameters["id"]?.toInt() ?: throw WrongFormat("id")
                     val rental = rentalRepository.getRentalById(id)
                     if (userId != rental.userId) throw NotOwnerOfEntityWithId("rental", id)
 
@@ -161,7 +160,7 @@ fun Route.rentalRoutes() {
                     call.respond(updatedRental)
                 }
 
-                delete("/{id}") {
+                delete("/staff/{id}") {
                     val userId = currentUserId()
                     val user = userRepository.getUserById(userId)
                     authorize(UserType.STAFF, user)
