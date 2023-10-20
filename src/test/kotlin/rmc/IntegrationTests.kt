@@ -85,10 +85,11 @@ class IntegrationTests {
             .chunked(2).joinToString("-")
     }
 
-    // Test if JWT token is returned
-    // Test if JWT token satisfies to JWT regex
-    // Test if HttpStatusCode.Created is returned
-    // Test if returned user equals the user stored in the database
+    /* IT-001 Integration Test Testcase: Endpoint /user/signup
+    - Test if JWT token is returned
+    - Test if JWT token satisfies to JWT regex
+    - Test if HttpStatusCode.Created is returned
+    - Test if returned user equals the user stored in the database */
     @Test
     fun testPostUserSignup() = testApplication {
         val client = createClient {
@@ -104,7 +105,8 @@ class IntegrationTests {
         }
 
         val authorizationHeader = response.headers["Authorization"]
-        val returnedToken = authorizationHeader?.substringAfter("Bearer ") ?: fail("No token returned in the Authorization header")
+        val returnedToken =
+            authorizationHeader?.substringAfter("Bearer ") ?: fail("No token returned in the Authorization header")
 
         val userFromResponse = Json.decodeFromString<UserDTO>(response.bodyAsText())
         val userFromDb = userRepository.getUserById(userFromResponse.id)
@@ -114,8 +116,9 @@ class IntegrationTests {
         assertEquals(userFromDb, userFromResponse)
     }
 
+    /* IT-002 Integration Test Testcase: Endpoint /vehicle/createVehicle
     // Test if HttpStatusCode.Created is returned
-    // Test if vehicle returned equals vehicle stored in the database
+    // Test if vehicle returned equals vehicle stored in the database */
     @Test
     fun testPostVehicleCreateVehicle() = testApplication {
         val client = createClient {
@@ -140,8 +143,9 @@ class IntegrationTests {
 
     }
 
+    /* IT-003 Integration Test Testcase: Endpoint /rental/createRental
     // Test if HttpStatusCode.Created is returned
-    // Test if rental returned equals the rental stored in the database
+    // Test if rental returned equals the rental stored in the database */
     @Test
     fun testPostRentalCreateRental() = testApplication {
         val client = createClient {
@@ -164,4 +168,3 @@ class IntegrationTests {
         assertEquals(rentalFromDb, rentalFromResponse)
     }
 }
-
