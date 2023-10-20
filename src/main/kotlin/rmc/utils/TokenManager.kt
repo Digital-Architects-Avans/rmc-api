@@ -3,8 +3,9 @@ package rmc.utils
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
-import rmc.dto.user.UserDTO
+import com.typesafe.config.ConfigFactory
 import io.ktor.server.config.*
+import rmc.dto.user.UserDTO
 import java.util.*
 
 class TokenManager(config: HoconApplicationConfig) {
@@ -31,3 +32,4 @@ class TokenManager(config: HoconApplicationConfig) {
             .build()
     }
 }
+val tokenManager = TokenManager(HoconApplicationConfig(ConfigFactory.load()))
