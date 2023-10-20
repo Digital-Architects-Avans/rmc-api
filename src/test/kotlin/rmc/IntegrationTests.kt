@@ -6,7 +6,6 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import rmc.db.dao.EngineType
@@ -27,7 +26,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
-class ApplicationTest {
+class IntegrationTests {
     private val jwtRegex = Regex("^[a-zA-Z0-9]+?\\.[a-zA-Z0-9]+?\\..+")
     private val time = System.currentTimeMillis()
 
