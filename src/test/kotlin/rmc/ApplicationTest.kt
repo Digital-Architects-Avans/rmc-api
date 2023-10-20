@@ -9,6 +9,8 @@ import kotlin.test.fail
 
 
 class SignupDTOTest {
+
+    //UT-001 Unittest Testcase: testValidInput
     @Test
     fun testValidInput() {
 
@@ -26,6 +28,7 @@ class SignupDTOTest {
         }
     }
 
+    //UT-002 Unittest Testcase: testInValidEmail
     @Test
     fun testInvalidEmail() {
 
@@ -43,6 +46,8 @@ class SignupDTOTest {
         }
     }
 
+
+    //UT-003 Unittest Testcase: testInValidPassword
     @Test
     fun testInvalidPassword() {
 
