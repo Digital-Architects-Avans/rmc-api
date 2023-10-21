@@ -1,0 +1,154 @@
+package rmc
+
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.testing.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import rmc.db.dao.UserType
+import rmc.dto.user.SignupDTO
+import rmc.dto.user.UserDTO
+import rmc.repository.user.userRepository
+import rmc.utils.tokenManager
+import kotlin.test.fail
+
+class EndPointTests {
+
+    private val time = System.currentTimeMillis()
+    private val userCredentials = SignupDTO(
+        "$time@email.com",
+        UserType.STAFF,
+        "StrongPassword$time!"
+    )
+    private val testUser = UserDTO(
+        1,
+        "email@email.com",
+        UserType.STAFF,
+        "Test",
+        "User",
+        "+316123456789",
+        "Street",
+        "1",
+        "1234AB",
+        "Breda"
+    )
+    private val token = tokenManager.generateJWTToken(testUser)
+
+    fun prepare() = testApplication {
+        val client = createClient {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+
+        val response = client.post("/user/signup") {
+            setBody(Json.encodeToString(userCredentials))
+            contentType(ContentType.Application.Json)
+            header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+        }
+       val token = tokenManager.generateJWTToken(testUser)
+        val authorizationHeader = response.headers["Authorization"]
+        val returnedToken =
+            authorizationHeader?.substringAfter("Bearer $token")
+                ?: fail("No token returned in the Authorization header")
+        val returnedUser = Json.decodeFromString<UserDTO>(response.bodyAsText())
+        val userFromDb = userRepository.getUserById(returnedUser.id)
+    }
+    val authHeader = "Bearer $token"
+
+    @Test
+    fun startTest(){
+        val requests = listOf(
+            mapOf("httpMethod" to "post", "endpoint" to "/user/signup"),
+            mapOf("httpMethod" to "post", "endpoint" to "/user/signin"),
+            mapOf("httpMethod" to "get", "endpoint" to "/user/users"),
+            mapOf("httpMethod" to "get", "endpoint" to "/user/3"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/user/2"),
+            mapOf("httpMethod" to "get", "endpoint" to "/user/me"),
+            mapOf("httpMethod" to "put", "endpoint" to "/user/me"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/user/me"),
+            mapOf("httpMethod" to "post", "endpoint" to "/vehicle/createVehicle"),
+            mapOf("httpMethod" to "get", "endpoint" to "/vehicle/1"),
+            mapOf("httpMethod" to "get", "endpoint" to "/vehicle/all"),
+            mapOf("httpMethod" to "get", "endpoint" to "/vehicle/allAvailable"),
+            mapOf("httpMethod" to "get", "endpoint" to "/vehicle/user"),
+            mapOf("httpMethod" to "put", "endpoint" to "/vehicle/2"),
+            mapOf("httpMethod" to "put", "endpoint" to "/vehicle/setAvailability/1/true"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/vehicle/2"),
+            mapOf("httpMethod" to "post", "endpoint" to "/rental//createRental/{vehicleId}"),
+            mapOf("httpMethod" to "get", "endpoint" to "/rental/rentals"),
+            mapOf("httpMethod" to "get", "endpoint" to "/rental/2"),
+            mapOf("httpMethod" to "get", "endpoint" to "/rental/rentedVehicle/3"),
+            mapOf("httpMethod" to "get", "endpoint" to "/rental/ownedVehicle/3"),
+            mapOf("httpMethod" to "get", "endpoint" to "/rental/allRentals"),
+            mapOf("httpMethod" to "put", "endpoint" to "/rental/2/14?status=denied"),
+            mapOf("httpMethod" to "put", "endpoint" to "/rental/2"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/rental/3"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/rental/staff/22"),
+        )
+
+        var i = 0
+        for (request in requests) {
+            val httpMethod = request["httpMethod"]
+            val endpoint = request["endpoint"]
+
+            if (httpMethod != null && endpoint != null) {
+                testEndpoint(httpMethod, endpoint)
+                i+=1
+                println("======= TEST $i PASSED =======")
+            }
+        }
+        println("++++++++ Total TESTS PASSED: $i ++++++++++")
+    }
+
+
+    fun testEndpoint(httpMethod: String, endpoint: String) = testApplication {
+        val client = createClient {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+
+        val response = when (httpMethod) {
+            "get" -> client.get(endpoint) {
+                authHeader
+                header(HttpHeaders.Authorization, authHeader)
+                header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            }
+            "post" -> client.post(endpoint) {
+                authHeader
+                header(HttpHeaders.Authorization, authHeader)
+                header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+
+            }
+            "delete" -> client.delete(endpoint) {
+                authHeader
+                header(HttpHeaders.Authorization, authHeader)
+                header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+
+            }
+            "put" -> client.put(endpoint) {
+                authHeader
+                header(HttpHeaders.Authorization, authHeader)
+                header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+
+            }
+            else -> throw IllegalArgumentException("Unsupported HTTP method: $httpMethod")
+        }
+        println(" ### Testing $httpMethod request to $endpoint")
+        println(" --FEEDBACK-- : $response")
+        Assertions.assertTrue(
+            response.status.value in 200..403 || response.status.value == 415 ,
+            "Endpoint does not exist: ${response.status.value}"
+        )
+    }
+
+
+}
+
+
