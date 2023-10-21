@@ -90,9 +90,9 @@ fun Route.rentalRoutes() {
                     if (!vehicle.availability) throw VehicleNotAvailable(vehicleId)
 
                     // Check if vehicle has rentals, if true
-                    // Check if vehicle does not have an active rental for that date
+                    // Check if vehicle does not have an active rental for that date with status APPROVED
                     val rentals = rentalRepository.getRentalByVehicleId(vehicleId)
-                    if (rentals.any { it.date == createRentalDTO.date }) throw VehicleIsAlreadyRented(vehicleId, createRentalDTO.date)
+                    if (rentals.any { it.date == createRentalDTO.date && it.status == RentalStatus.APPROVED }) throw VehicleIsAlreadyRented(vehicleId, createRentalDTO.date)
 
                     val rental = rentalRepository.createRental(userId, vehicleId, createRentalDTO)
                     call.respondText(Json.encodeToString(rental), status = HttpStatusCode.Created)
@@ -119,6 +119,7 @@ fun Route.rentalRoutes() {
                     }
 
                     rentalRepository.updateRentalStatus(rentalId, enumStatus)
+                    rentalRepository.cascadeRentalStatus(rentalId, vehicle.id, rental.date)
                     println(enumStatus)
                     val updatedRental = rentalRepository.getRentalById(rentalId)
                     call.respond(updatedRental)
