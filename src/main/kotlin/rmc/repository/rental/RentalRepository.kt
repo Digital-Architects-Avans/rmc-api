@@ -7,6 +7,7 @@ import rmc.dto.rental.RentalId
 import rmc.dto.rental.UpdateRentalDTO
 import rmc.dto.user.UserId
 import rmc.dto.vehicle.VehicleId
+import java.time.LocalDate
 
 interface RentalRepository {
     suspend fun allRentals(): List<RentalDTO>
@@ -16,6 +17,7 @@ interface RentalRepository {
     suspend fun createRental(userId: UserId, vehicleId: VehicleId, rental: CreateRentalDTO): RentalDTO
     suspend fun updateRental(rentalId: RentalId, rental: UpdateRentalDTO)
     suspend fun updateRentalStatus(rentalId: RentalId, status: RentalStatus)
+    suspend fun cascadeRentalStatus(approvedRental: RentalId, vehicleId: VehicleId, date: LocalDate)
     suspend fun deleteRental(rentalId: RentalId)
 
 }
