@@ -2,9 +2,9 @@
 
 ###
 // 18. Create a rental with vehicleId (userType: STAFF)
-POST http://localhost:8080/rental/createRental/7
+POST http://localhost:8080/rental/createRental/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImZpYXRyZW50ZXJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjI2LCJleHAiOjE2OTc4Mzc2ODR9.PBtQB51vJUKf8dpTjR3KZIEcPALlRmfDz6xaj4pVeDI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5Nzg5MTI3Nn0.FmanDqdxZIhCtQ9uNmBqGKJSMBBp-WBVdhFhNs1nW2o
 
 {
   "date": "2023-11-27"
@@ -30,9 +30,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 22. Get rentals for my vehicle with vehicleId (owner perspective) (userType: CLIENT)
-GET http://localhost:8080/rental/ownedVehicle/7
+GET http://localhost:8080/rental/ownedVehicle/1
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImZpYXRvd25lckBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MjUsImV4cCI6MTY5NzgzNzY4NH0.BvCfDBCcqejdi_wkRpDMAPEd5B5AFIlwBEX3XBxMvJc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3ODkxMjc2fQ.iJHyT5VXGYbDXiADLN9ZBozVlBgSXfn1LK5PrtC0D2Q
 
 ###
 // 23. Get all rentals (userType: STAFF)
@@ -42,9 +42,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 24. Update rentalStatus by rentalId (Approved/Denied for vehicle owner, Cancelled for rental owner)
-GET http://localhost:8080/rental/status/14?status=denied
+GET http://localhost:8080/rental/status/1?status=approved
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImZpYXRvd25lckBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MjUsImV4cCI6MTY5Nzg0MDgyOH0.qxhHEYy8UOjeqC2DmkP9i-2uqJZbk-f0avz2i69AN8s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3ODkxMjc2fQ.iJHyT5VXGYbDXiADLN9ZBozVlBgSXfn1LK5PrtC0D2Q
 
 ###
 // 25. Update rental by rentalId (userType: STAFF)
