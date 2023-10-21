@@ -26,7 +26,7 @@ class EndPointTests {
         "Breda"
     )
     private val token = tokenManager.generateJWTToken(testUser)
-    val authHeader = "Bearer $token"
+    private val authHeader = "Bearer $token"
 
     @Test
     fun startTest(){
@@ -75,7 +75,7 @@ class EndPointTests {
     }
 
 
-    fun testEndpoint(httpMethod: String, endpoint: String) = testApplication {
+    private fun testEndpoint(httpMethod: String, endpoint: String) = testApplication {
         val client = createClient {
             install(ContentNegotiation) {
                 json()
