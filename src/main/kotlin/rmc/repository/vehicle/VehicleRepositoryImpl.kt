@@ -1,7 +1,6 @@
 package rmc.repository.vehicle
 
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import rmc.db.DatabaseFactory.dbQuery
 import rmc.db.dao.UserEntity
 import rmc.db.dao.VehicleEntity
@@ -14,7 +13,7 @@ import rmc.dto.vehicle.UpdateVehicleDTO
 import rmc.dto.vehicle.VehicleDTO
 import rmc.dto.vehicle.VehicleId
 import rmc.error.EntityWithIdNotFound
-import rmc.error.NoVehiclesForUserFound
+import rmc.error.NoRentalsForUserFound
 import rmc.error.VehicleAlreadyRegistered
 
 class VehicleRepositoryImpl : VehicleRepository {
@@ -55,14 +54,11 @@ class VehicleRepositoryImpl : VehicleRepository {
         }.filter { it.availability }
     }
 
-    override suspend fun getVehiclesByUserId(userId: UserId): List<VehicleDTO> {
-        val vehicleEntities = dbQuery {
-            VehicleEntity.find(VehiclesTable.userId eq userId).toList()
+    override suspend fun getVehiclesByUserId(userId: UserId): List<VehicleDTO> = dbQuery {
+        VehicleEntity.find { VehiclesTable.userId eq userId }
+            .map { it.toVehicleDTO() }
+            .takeIf { it.isNotEmpty() } ?: throw NoRentalsForUserFound(userId)
         }
-
-        if (vehicleEntities.isEmpty()) throw NoVehiclesForUserFound(userId)
-        return vehicleEntities.map { it.toVehicleDTO() }
-    }
 
     override suspend fun updateVehicle(vehicleId: VehicleId, vehicle: UpdateVehicleDTO) = dbQuery {
         VehicleEntity.findById(vehicleId)?.let {
