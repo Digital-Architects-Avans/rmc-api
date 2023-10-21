@@ -2,29 +2,17 @@ package rmc
 
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
 import rmc.db.dao.UserType
-import rmc.dto.user.SignupDTO
 import rmc.dto.user.UserDTO
-import rmc.repository.user.userRepository
 import rmc.utils.tokenManager
-import kotlin.test.fail
 
 class EndPointTests {
 
-    private val time = System.currentTimeMillis()
-    private val userCredentials = SignupDTO(
-        "$time@email.com",
-        UserType.STAFF,
-        "StrongPassword$time!"
-    )
     private val testUser = UserDTO(
         999,
         "email@email.com",
@@ -38,27 +26,6 @@ class EndPointTests {
         "Breda"
     )
     private val token = tokenManager.generateJWTToken(testUser)
-
-    fun prepare() = testApplication {
-        val client = createClient {
-            install(ContentNegotiation) {
-                json()
-            }
-        }
-
-        val response = client.post("/user/signup") {
-            setBody(Json.encodeToString(userCredentials))
-            contentType(ContentType.Application.Json)
-            header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-        }
-       val token = tokenManager.generateJWTToken(testUser)
-        val authorizationHeader = response.headers["Authorization"]
-        val returnedToken =
-            authorizationHeader?.substringAfter("Bearer $token")
-                ?: fail("No token returned in the Authorization header")
-        val returnedUser = Json.decodeFromString<UserDTO>(response.bodyAsText())
-        val userFromDb = userRepository.getUserById(returnedUser.id)
-    }
     val authHeader = "Bearer $token"
 
     @Test
@@ -72,7 +39,6 @@ class EndPointTests {
             mapOf("httpMethod" to "delete", "endpoint" to "/user/333"),
             mapOf("httpMethod" to "get", "endpoint" to "/user/me"),
             mapOf("httpMethod" to "put", "endpoint" to "/user/me"),
-            mapOf("httpMethod" to "delete", "endpoint" to "/user/me"),
             mapOf("httpMethod" to "post", "endpoint" to "/vehicle/createVehicle"),
             mapOf("httpMethod" to "get", "endpoint" to "/vehicle/333"),
             mapOf("httpMethod" to "get", "endpoint" to "/vehicle/all"),
@@ -91,6 +57,7 @@ class EndPointTests {
             mapOf("httpMethod" to "put", "endpoint" to "/rental/333"),
             mapOf("httpMethod" to "delete", "endpoint" to "/rental/333"),
             mapOf("httpMethod" to "delete", "endpoint" to "/rental/staff/333"),
+            mapOf("httpMethod" to "delete", "endpoint" to "/user/me")
         )
 
         var i = 0
