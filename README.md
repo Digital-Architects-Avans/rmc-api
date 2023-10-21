@@ -13,11 +13,11 @@ A Kotlin REST API with the Ktor & Exposed frameworks.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Introduction
+## Introduction(#introduction)
 
 Our project is a modern and user-friendly mobile application built using the Ktor framework with the Exposed DAO API for seamless data persistence. Designed to serve the needs of people seeking quick and hassle-free car rental services, as well as those who wish to make their vehicles available for rent, this Android app employs the power of Jetpack Compose for an elegant and intuitive user interface.
 
-## Getting Started
+## Getting Started(#getting-started)
 
 A brief set of instructions on how to set up and run the project locally:
 
@@ -40,7 +40,7 @@ A brief set of instructions on how to set up and run the project locally:
 - Find these requests in the route map, organized within subdirectories for each entity type.
 - Look for the corresponding "<Type>Requests.http" file in the respective subdirectory for examples of predefined HTTP requests.
 
-## Usage
+## Usage(#usage)
 
 Below is an example of a usecase that employs some of the endpoints provided by this web API:
 
@@ -139,7 +139,7 @@ Below is an example of a usecase that employs some of the endpoints provided by 
 There are 27 endpoints in total which allows you to perform a various CRUD operations on the User, Vehicle and Rental entities. These endpoints collectively support the functionalities required for users to register, list vehicles, make rental reservations, and manage those reservations, catering to the needs of both vehicle owners and renters in a vehicle rental platform.
 
 
-## Endpoints
+## Endpoints(#endpoints)
 
 Endpoint List
 In the "route" directory, you can find routes and endpoints organized per entity as follows:
@@ -192,7 +192,7 @@ In the "route" directory, you can find routes and endpoints organized by routing
 
 
 
-## Contributing
+## Contributing(#contributing)
 
 ### How to Contribute
 
@@ -208,6 +208,13 @@ Additionally, you can reach out to our team by opening a discussion on our GitHu
 
 We appreciate your support and look forward to working together to make our project even better.
 
-## License
+## License(#license)
 
-Specify the project's license and any terms of use or distribution.
+This project is released under the [Apache License 2.0](LICENSE).
+
+### Terms of Use and Distribution
+
+By using this project, you agree to be bound by the terms and conditions of the Apache License 2.0. You may use, modify, distribute, and contribute to this project, subject to the terms specified in the license. Please review the [LICENSE](LICENSE) file for the full text of the Apache License 2.0 and understand its implications. If you have any questions or concerns, please contact the project owner for clarification.
+
+Your use and contributions to this project are greatly appreciated, and we encourage collaboration in accordance with the terms of the Apache License 2.0.
+
