@@ -31,7 +31,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // 12. Get all vehicles (userType: STAFF)
 GET http://localhost:8080/vehicle/all
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNzY4NH0.OUlVHzhqryPw6_IPE4tUjtr-FAYcMa6YoRMgQp47VK8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjUsImV4cCI6MTY5NzkxMDY1Mn0.KvMvAmpPjmsYfZyJz66bjPKaNylUKh6emXGYuuyIQCE
 
 ###
 // 13. Get all available vehicles (userType: CLIENT)
@@ -43,7 +43,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 // 14. Get vehicles by userId from JWT token (userType: CLIENT)
 GET http://localhost:8080/vehicle/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDMyQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoyMCwiZXhwIjoxNjk3ODM0MjQyfQ.oWhNXH013ZdnkkbIpJJ2JFZmGEzcPyo4Rjs76rbkW5o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzkxMDM5M30.YN9yRfbmyRB095T-BVIeSP-kiDrLjQH6zeQ8gToIOyQ
 
 ###
 // 15. Update vehicles by ID (userType: CLIENT)
@@ -70,7 +70,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 PUT http://localhost:8080/vehicle/setAvailability/3/true
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIxLCJleHAiOjE2OTc4MzU1MDB9.kJrSLzD3NyvKumSJ_Jti1WH-XGysT-On6EEoWDi27w8
-
 
 ###
 // 17. Delete own vehicle (userType: CLIENT)
