@@ -26,7 +26,7 @@ class EndPointTests {
         "StrongPassword$time!"
     )
     private val testUser = UserDTO(
-        1,
+        999,
         "email@email.com",
         UserType.STAFF,
         "Test",
