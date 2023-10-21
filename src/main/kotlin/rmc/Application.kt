@@ -19,8 +19,3 @@ fun Application.module(testing: Boolean = false) {
     configureValidation()
     DatabaseFactory.init(environment.config)
 }
-
-//    TODO("TEST HTTP ENDPONTS")
-//    TODO("VALIDATE USER INPUT DTOS?")
-//    TODO("SEPARATE USER AND USERPROFILE ROUTES")
-//    TODO("CHECK EACH FILE FOR UNUSED IMPORTS AND ERRORS")
