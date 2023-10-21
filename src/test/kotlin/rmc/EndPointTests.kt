@@ -101,10 +101,10 @@ class EndPointTests {
             if (httpMethod != null && endpoint != null) {
                 testEndpoint(httpMethod, endpoint)
                 i+=1
-                println("======= TEST $i PASSED =======")
+                println("======= TEST PASSED =======")
             }
         }
-        println("++++++++ Total TESTS PASSED: $i ++++++++++")
+        println("++++++++ Total ENDPOINTS THAT PASSED TEST: $i ++++++++++")
     }
 
 
