@@ -89,9 +89,7 @@ class EndPointTests {
             mapOf("httpMethod" to "put", "endpoint" to "/rental/2/14?status=denied"),
             mapOf("httpMethod" to "put", "endpoint" to "/rental/2"),
             mapOf("httpMethod" to "delete", "endpoint" to "/rental/3"),
-            mapOf("httpMethod" to "delete", "endpoint" to "/rental/22"),
-            mapOf("httpMethod" to "get", "endpoint" to "/rental/")
-
+            mapOf("httpMethod" to "delete", "endpoint" to "/rental/staff/22"),
         )
 
         var i = 0
