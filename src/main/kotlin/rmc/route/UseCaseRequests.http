@@ -1,0 +1,188 @@
+// 1. Register a new account for a vehicle owner (owner1)
+POST http://localhost:8080/user/signup
+Content-Type: application/json
+
+{
+  "email": "owner1@email.com",
+  "userType": "CLIENT",
+  "password": "StrongPassword1!"
+}
+
+###
+// 2. Owner 1 creates a vehicle
+POST http://localhost:8080/vehicle/createVehicle
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3OTEwOTM2fQ.3wzuVOnldz9rtN42G53m3ziyyV_GDkWDc0pzvjGWYE4
+
+{
+  "brand": "Tesla",
+  "model": "Model S",
+  "year": 2023,
+  "vehicleClass": "Sedan",
+  "engineType": "BEV",
+  "licensePlate": "4-ALF-55",
+  "imgLink": "https://www.google.com",
+  "latitude": 51.571915,
+  "longitude": 4.768323,
+  "price": 250.00,
+  "availability": true
+}
+
+###
+// 3. Owner 1 creates a second vehicle
+POST http://localhost:8080/vehicle/createVehicle
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3OTEwOTM2fQ.3wzuVOnldz9rtN42G53m3ziyyV_GDkWDc0pzvjGWYE4
+
+{
+  "brand": "Ford",
+  "model": "Focus",
+  "year": 1999,
+  "vehicleClass": "Sedan",
+  "engineType": "ICE",
+  "licensePlate": "22-BH-38",
+  "imgLink": "https://www.google.com",
+  "latitude": 52.738463,
+  "longitude": 2.973632,
+  "price": 99.00,
+  "availability": true
+}
+
+###
+// 4. Owner set vehicle availability of vehicle 2 to false
+PUT http://localhost:8080/vehicle/setAvailability/2/false
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3OTEwOTM2fQ.3wzuVOnldz9rtN42G53m3ziyyV_GDkWDc0pzvjGWYE4
+
+###
+// 5. Register a new account for a secondary vehicle owner (owner2)
+POST http://localhost:8080/user/signup
+Content-Type: application/json
+
+{
+  "email": "owner2@email.com",
+  "userType": "CLIENT",
+  "password": "StrongPassword1!"
+}
+
+###
+// 6. Owner 2 creates a vehicle
+POST http://localhost:8080/vehicle/createVehicle
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMkBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MiwiZXhwIjoxNjk3OTEwOTM2fQ.z-HWsUm1s7AuxNsFSwXBjhpUqhjGgKpSzOiKh7rCcQA
+
+{
+  "brand": "Honda",
+  "model": "Civic",
+  "year": 2001,
+  "vehicleClass": "Hatchback",
+  "engineType": "ICE",
+  "licensePlate": "16-AB-21",
+  "imgLink": "https://www.google.com",
+  "latitude": 49.234987,
+  "longitude": 3.126499,
+  "price": 129.00,
+  "availability": true
+}
+
+###
+// 7. Register a new account for a renter
+POST http://localhost:8080/user/signup
+Content-Type: application/json
+
+{
+  "email": "renter1@email.com",
+  "userType": "CLIENT",
+  "password": "StrongPassword1!"
+}
+
+###
+// 8. Renter requests a list of all available vehicles
+GET http://localhost:8080/vehicle/allAvailable
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzkxMDkzNn0.gOn3NpACDj_UH1068QTZNjEJuevTO_1ib8rAwQOoS0k
+
+###
+// 9. Renter creates a rental / reservation for vehicle 1
+POST http://localhost:8080/rental/createRental/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzkxMDkzNn0.gOn3NpACDj_UH1068QTZNjEJuevTO_1ib8rAwQOoS0k
+
+{
+  "date": "2023-10-21"
+}
+
+###
+// 10. Register a new account for renter 2
+POST http://localhost:8080/user/signup
+Content-Type: application/json
+
+{
+  "email": "renter2@email.com",
+  "userType": "CLIENT",
+  "password": "StrongPassword1!"
+}
+
+###
+// 11. Renter 2 also creates a rental / reservation for vehicle 1
+POST http://localhost:8080/rental/createRental/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzkxMDkzNn0.EgoGcdpHWu6BDzYvraoLRPE8UpDAEeVXfLJGu9hSVto
+
+{
+  "date": "2023-10-21"
+}
+
+###
+// 12. Log in as owner 1
+POST http://localhost:8080/user/signin
+Content-Type: application/json
+
+{
+  "email": "owner1@email.com",
+  "password": "StrongPassword1!"
+}
+
+###
+// 13. Owner1 requests to see rentals for vehicle 1
+GET http://localhost:8080/rental/ownedVehicle/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3OTEwOTM2fQ.3wzuVOnldz9rtN42G53m3ziyyV_GDkWDc0pzvjGWYE4
+
+###
+// 14. Owner 1 approved one of the two rentals based on user score / other preferences
+GET http://localhost:8080/rental/status/1?status=approved
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3OTEwOTM2fQ.3wzuVOnldz9rtN42G53m3ziyyV_GDkWDc0pzvjGWYE4
+
+###
+// 15. Log in as renter 1
+POST http://localhost:8080/user/signin
+Content-Type: application/json
+
+{
+  "email": "renter1@email.com",
+  "password": "StrongPassword1!"
+}
+
+###
+// 16. Renter 1 requests his rentals
+GET http://localhost:8080/rental/rentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzkxMDkzNn0.gOn3NpACDj_UH1068QTZNjEJuevTO_1ib8rAwQOoS0k
+
+###
+// 17. Log in as renter 2
+POST http://localhost:8080/user/signin
+Content-Type: application/json
+
+{
+  "email": "renter2@email.com",
+  "password": "StrongPassword1!"
+}
+
+###
+// 16. Renter 2 requests his rentals
+GET http://localhost:8080/rental/rentals
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjQsImV4cCI6MTY5NzkxMDkzNn0.EgoGcdpHWu6BDzYvraoLRPE8UpDAEeVXfLJGu9hSVto
