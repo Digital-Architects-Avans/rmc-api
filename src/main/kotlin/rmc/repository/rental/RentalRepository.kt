@@ -1,5 +1,6 @@
 package rmc.repository.rental
 
+import kotlinx.datetime.LocalDate
 import rmc.db.dao.RentalStatus
 import rmc.dto.rental.CreateRentalDTO
 import rmc.dto.rental.RentalDTO
@@ -7,7 +8,6 @@ import rmc.dto.rental.RentalId
 import rmc.dto.rental.UpdateRentalDTO
 import rmc.dto.user.UserId
 import rmc.dto.vehicle.VehicleId
-import java.time.LocalDate
 
 interface RentalRepository {
     suspend fun allRentals(): List<RentalDTO>
