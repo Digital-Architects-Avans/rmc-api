@@ -5,12 +5,12 @@ import io.ktor.server.application.*
 import io.ktor.server.plugins.requestvalidation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import rmc.db.dao.UserType
 import rmc.dto.user.UserId
 import rmc.dto.vehicle.VehicleId
-import java.time.LocalDate
 
 open class EntityWithIdNotFound(entity: String, id: Int) : Exception("""{"Exception":"$entity with id $id not found"}""")
 class InvalidEmailError : Exception("""{"Exception":"Invalid email"}""")
