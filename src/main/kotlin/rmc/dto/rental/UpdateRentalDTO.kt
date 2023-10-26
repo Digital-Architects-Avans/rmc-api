@@ -1,23 +1,17 @@
 package rmc.dto.rental
 
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import rmc.db.dao.RentalStatus
-import rmc.plugins.BigDecimalSerializer
-import rmc.plugins.LocalDateSerializer
-import java.math.BigDecimal
-import java.time.LocalDate
 
 @Serializable
 data class UpdateRentalDTO (
     val vehicleId: Int,
     val userId: Int,
-    @Serializable(with = LocalDateSerializer::class)
     val date: LocalDate,
     val price: Double,
-    @Serializable(with = BigDecimalSerializer::class)
-    val latitude: BigDecimal,
-    @Serializable(with = BigDecimalSerializer::class)
-    val longitude: BigDecimal,
+    val latitude: Float,
+    val longitude: Float,
     val status: RentalStatus,
     val distanceTravelled: Double,
     val score: Int
