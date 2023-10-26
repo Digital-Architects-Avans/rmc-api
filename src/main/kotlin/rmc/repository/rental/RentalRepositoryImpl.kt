@@ -1,5 +1,6 @@
 package rmc.repository.rental
 
+import kotlinx.datetime.LocalDate
 import rmc.db.DatabaseFactory.dbQuery
 import rmc.db.dao.*
 import rmc.db.tables.RentalsTable
@@ -12,7 +13,6 @@ import rmc.dto.vehicle.VehicleId
 import rmc.error.EntityWithIdNotFound
 import rmc.error.NoRentalsForUserFound
 import rmc.repository.vehicle.vehicleRepository
-import java.time.LocalDate
 
 class RentalRepositoryImpl : RentalRepository {
 
@@ -77,14 +77,22 @@ class RentalRepositoryImpl : RentalRepository {
     }
 
     // For every rental for a vehicle on the same date, if not approvedRental set status to denied
-    override suspend fun cascadeRentalStatus(approvedRental: RentalId, vehicleId: VehicleId, date: LocalDate) = dbQuery {
-        for (rentalEntity in RentalEntity.find { RentalsTable.vehicleId eq vehicleId }.filter { it.date == date }) {
-            if (rentalEntity.id.value != approvedRental) this.updateRentalStatus(rentalEntity.id.value, RentalStatus.DENIED)
+    override suspend fun cascadeRentalStatus(approvedRental: RentalId, vehicleId: VehicleId, date: LocalDate) =
+        dbQuery {
+            for (rentalEntity in RentalEntity.find { RentalsTable.vehicleId eq vehicleId }
+                .filter {
+                    it.date == date
+                }) {
+                if (rentalEntity.id.value != approvedRental) this.updateRentalStatus(
+                    rentalEntity.id.value,
+                    RentalStatus.DENIED
+                )
+            }
         }
-    }
 
     override suspend fun deleteRental(rentalId: RentalId) = dbQuery {
         RentalEntity.findById(rentalId)?.delete() ?: throw EntityWithIdNotFound("Rental", rentalId)
     }
 }
+
 val rentalRepository: RentalRepository = RentalRepositoryImpl()
