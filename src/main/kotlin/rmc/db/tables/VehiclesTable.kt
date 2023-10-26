@@ -13,8 +13,8 @@ object VehiclesTable : IntIdTable() {
     val engineType = enumerationByName<EngineType>("engineType", 100)
     val licensePlate = varchar("licensePlate", 100).default("")
     val imgLink = varchar("imgLink", 100).default("")
-    val latitude = decimal("latitude", 8, 6)
-    val longitude = decimal("longitude", 9, 6)
+    val latitude = float("latitude").default(0.0F)
+    val longitude = float("longitude").default(0.0F)
     val price = double("price").default(0.00)
     val availability = bool("availability").default(true)
 
