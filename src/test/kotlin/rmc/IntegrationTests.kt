@@ -20,7 +20,7 @@ import rmc.repository.rental.rentalRepository
 import rmc.repository.user.userRepository
 import rmc.repository.vehicle.vehicleRepository
 import rmc.utils.tokenManager
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -59,8 +59,8 @@ class IntegrationTests {
         EngineType.BEV,
         generateRandomLicensePlate(),
         "https://www.imageoftesla.com/image1.png",
-        51.584009.toBigDecimal(),
-        4.795735.toBigDecimal(),
+        51.584009.toFloat(),
+        4.795735.toFloat(),
         129.00,
         true
     )
@@ -71,11 +71,11 @@ class IntegrationTests {
 
     // Function that returns a random day to be used to create a rental test
     private fun generateRandomDay(): LocalDate {
-        val minDay = LocalDate.of(1970, 1, 1).toEpochDay()
-        val maxDay = LocalDate.of(2030, 12, 31).toEpochDay()
-        val randomDay = minDay + Random.nextInt((maxDay - minDay).toInt())
+        val randomDay = Random.nextInt(1, 30) // 1 to 29 (inclusive)
+        val randomMonth = Random.nextInt(1, 13) // 1 to 12
+        val randomYear = Random.nextInt(1970, 2024) // 1970 to 2023
 
-        return LocalDate.ofEpochDay(randomDay)
+        return LocalDate(randomYear, randomMonth, randomDay)
     }
 
     // Function that returns a random license plate, iot prevent a duplicate unique index key insert
