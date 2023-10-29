@@ -6,12 +6,12 @@ A Kotlin REST API with the Ktor & Exposed frameworks.
 
 ## Table of Contents
 
-- [Introduction](https://github.com/Digital-Architects-Avans/rmc-api/master/README.md#usage)
-- [Getting Started](https://github.com/Digital-Architects-Avans/rmc-api/edit/master/README.md#usage)
-- [Usage](https://github.com/Digital-Architects-Avans/rmc-api/edit/master/README.md#usage)
-- [Endpoints](https://github.com/Digital-Architects-Avans/rmc-api/edit/master/README.md#endpoints)
-- [Contributing](https://github.com/Digital-Architects-Avans/rmc-api/edit/master/README.md#endpoints)
-- [License](https://github.com/Digital-Architects-Avans/rmc-api/edit/master/README.md#endpoints)
+- [Introduction](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#introduction)
+- [Getting Started](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#usage)
+- [Usage](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#usage)
+- [Endpoints](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#endpoints)
+- [Contributing](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#endpoints)
+- [License](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#endpoints)
 
 ## Introduction
 
