@@ -7,8 +7,8 @@ A Kotlin REST API with the Ktor & Exposed frameworks.
 ## Table of Contents
 
 - [Introduction](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#introduction)
-- [Getting Started](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#usage)
-- [Usage](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#getting-started)
+- [Getting Started](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#getting-started)
+- [Usage](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#usage)
 - [Endpoints](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#endpoints)
 - [Contributing](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#contributing)
 - [License](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#license)
