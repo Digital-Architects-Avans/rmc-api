@@ -7,6 +7,7 @@ import io.ktor.server.auth.jwt.*
 import io.ktor.server.config.*
 import io.ktor.server.plugins.*
 import io.ktor.server.plugins.callloging.*
+import io.ktor.server.plugins.httpsredirect.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.request.*
 import org.slf4j.event.Level
@@ -52,5 +53,10 @@ fun Application.configureSecurity() {
             rateLimiter(limit = 10, refillPeriod = 60.seconds)
             requestKey { call -> call.request.origin.remoteHost }
         }
+    }
+
+    install(HttpsRedirect) {
+        sslPort = 8443
+        permanentRedirect = true
     }
 }

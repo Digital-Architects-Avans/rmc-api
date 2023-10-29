@@ -11,7 +11,7 @@ import rmc.plugins.configureValidation
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun Application.module(testing: Boolean = false) {
+fun Application.module() {
     configureSecurity()
     configureSerialization()
     configureRouting()
