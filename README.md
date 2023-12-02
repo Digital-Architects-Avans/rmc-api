@@ -6,18 +6,18 @@ A Kotlin REST API with the Ktor & Exposed frameworks.
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Endpoints](#endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+- [Introduction](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#introduction)
+- [Getting Started](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#getting-started)
+- [Usage](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#usage)
+- [Endpoints](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#endpoints)
+- [Contributing](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#contributing)
+- [License](https://github.com/Digital-Architects-Avans/rmc-api/blob/master/README.md#license)
 
-## Introduction(#introduction)
+## Introduction
 
 Our project is a modern and user-friendly mobile application built using the Ktor framework with the Exposed DAO API for seamless data persistence. Designed to serve the needs of people seeking quick and hassle-free car rental services, as well as those who wish to make their vehicles available for rent, this Android app employs the power of Jetpack Compose for an elegant and intuitive user interface.
 
-## Getting Started(#getting-started)
+## Getting Started
 
 A brief set of instructions on how to set up and run the project locally:
 
@@ -40,7 +40,7 @@ A brief set of instructions on how to set up and run the project locally:
 - Find these requests in the route map, organized within subdirectories for each entity type.
 - Look for the corresponding "<Type>Requests.http" file in the respective subdirectory for examples of predefined HTTP requests.
 
-## Usage(#usage)
+## Usage
 
 Below is an example of a usecase that employs some of the endpoints provided by this web API:
 
@@ -139,7 +139,7 @@ Below is an example of a usecase that employs some of the endpoints provided by 
 There are 27 endpoints in total which allows you to perform a various CRUD operations on the User, Vehicle and Rental entities. These endpoints collectively support the functionalities required for users to register, list vehicles, make rental reservations, and manage those reservations, catering to the needs of both vehicle owners and renters in a vehicle rental platform.
 
 
-## Endpoints(#endpoints)
+## Endpoints
 
 Endpoint List
 In the "route" directory, you can find routes and endpoints organized per entity as follows:
@@ -192,7 +192,7 @@ In the "route" directory, you can find routes and endpoints organized by routing
 
 
 
-## Contributing(#contributing)
+## Contributing
 
 ### How to Contribute
 
@@ -208,7 +208,7 @@ Additionally, you can reach out to our team by opening a discussion on our GitHu
 
 We appreciate your support and look forward to working together to make our project even better.
 
-## License(#license)
+## License
 
 This project is released under the [Apache License 2.0](LICENSE).
 
