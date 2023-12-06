@@ -1,8 +1,8 @@
-// HTTP Requests for VehicleRoutes.kt
+// https Requests for VehicleRoutes.kt
 
 ###
 // 10. Create a vehicle (userType: CLIENT)
-POST http://localhost:8080/vehicle/createVehicle
+POST https://localhost:8443/vehicle/createVehicle
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6Im93bmVyMUBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MSwiZXhwIjoxNjk3ODkxMjc2fQ.iJHyT5VXGYbDXiADLN9ZBozVlBgSXfn1LK5PrtC0D2Q
 
@@ -13,7 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
   "vehicleClass": "Test",
   "engineType": "BEV",
   "licensePlate": "04-ALF-55",
-  "imgLink": "https://www.google.com",
+  "imgLink": "httpss://www.google.com",
   "latitude": 51.571915,
   "longitude": 4.768323,
   "price": 250.00,
@@ -22,32 +22,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 11. Get vehicle by ID (userType: CLIENT)
-GET http://localhost:8080/vehicle/3
+GET https://localhost:8443/vehicle/3
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDNAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjE5LCJleHAiOjE2OTc4MzQyNDJ9.yLE0BuivNgexNWc2B9SYOEMWkXwlx5M1WJHWqkKNR0s
 
 
 ###
 // 12. Get all vehicles (userType: STAFF)
-GET http://localhost:8080/vehicle/all
+GET https://localhost:8443/vehicle/all
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjUsImV4cCI6MTY5NzkxMDY1Mn0.KvMvAmpPjmsYfZyJz66bjPKaNylUKh6emXGYuuyIQCE
 
 ###
 // 13. Get all available vehicles (userType: CLIENT)
-GET http://localhost:8080/vehicle/allAvailable
+GET https://localhost:8443/vehicle/allAvailable
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIsImV4cCI6MTY5Nzg5MTI3Nn0.FmanDqdxZIhCtQ9uNmBqGKJSMBBp-WBVdhFhNs1nW2o
 
 ###
 // 14. Get vehicles by userId from JWT token (userType: CLIENT)
-GET http://localhost:8080/vehicle/user
+GET https://localhost:8443/vehicle/user
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InJlbnRlcjFAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjMsImV4cCI6MTY5NzkxMDM5M30.YN9yRfbmyRB095T-BVIeSP-kiDrLjQH6zeQ8gToIOyQ
 
 ###
 // 15. Update vehicles by ID (userType: CLIENT)
-PUT http://localhost:8080/vehicle/3
+PUT https://localhost:8443/vehicle/3
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDMyQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiQ0xJRU5UIiwidXNlcklkIjoyMCwiZXhwIjoxNjk3ODM0MjQyfQ.oWhNXH013ZdnkkbIpJJ2JFZmGEzcPyo4Rjs76rbkW5o
 
@@ -67,13 +67,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 16. Set vehicle availability (userType: CLIENT)
-PUT http://localhost:8080/vehicle/setAvailability/3/true
+PUT https://localhost:8443/vehicle/setAvailability/3/true
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudDJAZW1haWwuY29tIiwidXNlclR5cGUiOiJDTElFTlQiLCJ1c2VySWQiOjIxLCJleHAiOjE2OTc4MzU1MDB9.kJrSLzD3NyvKumSJ_Jti1WH-XGysT-On6EEoWDi27w8
 
 ###
 // 17. Delete own vehicle (userType: CLIENT)
-DELETE http://localhost:8080/vehicle/3
+DELETE https://localhost:8443/vehicle/3
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5Nzg0MTM3NX0.p3k-79xzggMqE6VCwQ718UljAe2BmVj3POx2usbJ7iM
 
