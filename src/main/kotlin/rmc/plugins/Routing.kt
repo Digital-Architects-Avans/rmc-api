@@ -3,6 +3,7 @@ package rmc.plugins
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.pipeline.*
 import rmc.db.dao.UserType
@@ -14,6 +15,9 @@ import rmc.route.vehicle.vehicleRoutes
 
 fun Application.configureRouting() {
     routing {
+        get("/") {
+            call.respondText("Welcome to the Rent My Car API! (Text for Android APP SSL connection test)")
+        }
         userRoutes()
         vehicleRoutes()
         rentalRoutes()
