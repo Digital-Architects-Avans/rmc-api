@@ -1,40 +1,40 @@
 // https Requests for UserRoutes.kt
 
 // 1. Register a new user (no auth)
-POST 8443
+POST https://localhost:8443/user/signup
 Content-Type: application/json
 
 {
-  "email": "owner22@email.com",
+  "email": "owner21@email.com",
   "userType": "CLIENT",
   "password": "StrongPassword1!"
 }
 
 ###
 // 2. Authenticate a user (no auth)
-POST https://localhost:8080/user/signin
+POST https://localhost:8443/user/signin
 Content-Type: application/json
 
 {
-  "email": "owner1@email.com",
+  "email": "staff@email.com",
   "password": "StrongPassword1!"
 }
 
 ###
 // 3. Get all users (userType: STAFF)
-GET https://localhost:8080/user/users
+GET https://localhost:8443/user/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzMDQ0OX0.dNjHtEHl3grXRIi9MlyIuOiFnbQPmg-zTsoTLEwISWo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIzLCJleHAiOjE3MDIzNDI1NjR9.OcdtZK2pRiNIn0QYVhctGgRCvR3f_lpsJ6lyQtOO1E0
 
 ###
 // 4. Get user by userId (userType: STAFF)
-GET https://localhost:8080/user/18
+GET https://localhost:8443/user/18
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIzLCJleHAiOjE3MDIzMzU1MjZ9.fDAKJJcVm4SMJ-gepWYkR3wJ9dwhGKKARR6CmkQZFd4
 
 ###
 // 5. Update user (userType: STAFF)
-PUT https://localhost:8080/user/1
+PUT https://localhost:8443/user/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
 
@@ -52,19 +52,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 6. Delete user (userType: STAFF)
-DELETE https://localhost:8080/user/7
+DELETE https://localhost:8443/user/7
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6InN0YWZmQGVtYWlsLmNvbSIsInVzZXJUeXBlIjoiU1RBRkYiLCJ1c2VySWQiOjIsImV4cCI6MTY5NzgzNDI0Mn0.jxYuy7DHuWBG4h7V_d_UAOJG2lE8G3jZ5zP3TqbBw-0
 
 ###
 // 7. Get user info from userId inside JWT token (userType: CLIENT)
-GET https://localhost:8080/user/me
+GET https://localhost:8443/user/me
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
 ###
 // 8. Update user from userId in JWT token (userType: CLIENT)
-PUT https://localhost:8080/user/me
+PUT https://localhost:8443/user/me
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
@@ -82,7 +82,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vM
 
 ###
 // 9. Delete user with userId from JWT token (userType: CLIENT)
-DELETE https://localhost:8080/user/me
+DELETE https://localhost:8443/user/me
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL2hlbGxvIiwiaXNzIjoiaHR0cDovLzAuMC4wLjA6ODA4MC8iLCJlbWFpbCI6ImNsaWVudEBlbWFpbC5jb20iLCJ1c2VyVHlwZSI6IkNMSUVOVCIsInVzZXJJZCI6MTgsImV4cCI6MTY5NzgzNDI0Mn0.w5_7mj-7oTt6KbDmClu9R2J00qbyDvxUmHYI6niojk4
 
