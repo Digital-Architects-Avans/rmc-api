@@ -55,8 +55,8 @@ fun Application.configureSecurity() {
         }
     }
 
-    install(HttpsRedirect) {
-        sslPort = 8443
-        permanentRedirect = true
-    }
+//    install(HttpsRedirect) {
+//        sslPort = 8443
+//        permanentRedirect = true
+//    }
 }
